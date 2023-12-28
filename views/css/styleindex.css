@@ -1,0 +1,311 @@
+:root {
+  --color-azul1: rgb(73, 124, 158);
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("./Montserrat/Montserrat-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("./Montserrat/Montserrat-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("./Montserrat/Montserrat-Black.ttf") format("truetype");
+  font-weight: 900;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1400px;
+  overflow: hidden;
+}
+
+
+.nav {
+  --submenu: scale(
+    0
+  ); /* Creo un estado para el mininav de que no aparezca con scale(0)*/
+  --hamburguer: scale(1); /* Creo un estado para el nav de que sea visible*/
+  --menu: translate(
+    -100%
+  ); /* Creo un estado para el nav de que se mueva a la izquierda y no se vea*/
+
+  padding: 40px 0;
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: repeat(2, max-content);
+}
+/* cuando la etiqueta con id nav sea referenciada se quita hamburguesa y sale el mininav */
+.nav:target {
+  --menu: translate(
+    0
+  ); /* Creo un estado para el nav de que se mueva hacia la derecha y se vea*/
+  --submenu: scale(1);
+  --hamburguer: scale(0);
+  .nav__logo {
+    display: none;
+  }
+}
+
+.nav__logo {
+  font-size: 2rem;
+  z-index: 1;
+  font-weight: 900;
+  margin:0;
+  padding: 0;
+}
+/* pongo los dos iconos en el mismo sitio   */
+.nav__hamburguer,
+.nav__close {
+  cursor: pointer;
+  grid-column: -2/-1;
+  grid-row: 1/2;
+  transition: 0.4s transform;
+}
+
+.nav__hamburguer {
+  /* le paso el estado */
+  transform: var(--hamburguer);
+}
+
+.nav__close {
+  /* le paso el estado */
+  transform: var(--submenu);
+}
+
+.nav__icon {
+  width: 40px;
+}
+
+.nav__links {
+  background-color: var(--color-azul1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+
+  display: grid;
+  align-content: center;
+  gap: 2.5em;
+  padding-left: 5%;
+
+  transform: var(
+    --menu
+  ); /*llamo a la variable menu para que se mueva a la izquierda*/
+  transition: 0.3s transform;
+}
+
+.nav__item {
+  list-style: none;
+}
+
+.nav__link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+.char {
+  color: brown;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+}
+.char:hover {
+  color: rgb(255, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+}
+.char--logo {
+  font-size: 3rem;
+}
+.error , .error-message {
+  width: 92%;
+  margin: 0px auto;
+  padding: 10px;
+  border: 1px solid #a94442;
+  color: #a94442;
+  background: #f2dede;
+  border-radius: 5px;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.exito {
+  width: 92%;
+  margin: 0px auto;
+  padding: 10px;
+  border: 1px solid #3c763d;
+  color: #3c763d;
+  background: #dff0d8;
+  border-radius: 5px;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+@media (min-width: 768px) {
+  .nav {
+    --hamburguer: scale(0); /* si mayor a 768px no se ve el icono hamburguesa */
+    --menu: translate(0); /* si mayor a 768px no se ve el menu */
+  }
+
+  .nav:target {
+    --submenu: scale(0);
+  }
+
+  .nav__links {
+    padding: 0;
+    background-color: unset; /* valor original y vuelva a la grid*/
+    position: unset; /* valor original y vuelva a la grid*/
+    gap: 1.5em;
+    grid-auto-flow: column; /* vuelva a la grid pero en columna*/
+
+    transform: unset;
+
+    grid-column: -2/-1;
+    grid-row: 1/2;
+  }
+
+  .nav__link {
+    font-size: 1rem;
+    letter-spacing: none;
+  }
+  .char {
+    font-size: 2rem;
+  }
+  .char--logo {
+    font-size: 3rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .nav__links {
+    gap: 3em;
+  }
+  .nav__link {
+    font-size: 1.5rem;
+  }
+}
+.header_short {
+  z-index: 100;
+  opacity: 0.9;
+  top: 0;
+  margin: 0;
+  right: 0;
+  width: 100%;
+  height: 130px;
+  background: linear-gradient(
+    to right,
+    rgba(69, 152, 224, 1) 0%,
+    rgba(66, 179, 205, 1) 31%,
+    rgba(63, 212, 182, 1) 70%
+  );
+}
+/**********************FIN HEADER******************************************/
+.visor {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-size: cover ;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.visorindex{
+  background-image: url(../images/films2.jpg);
+}
+.visorlogin{
+  background-image: url(../images/films3.jpg);
+}
+.visorregister{
+  background-image: url(../images/films4.jpg);
+}
+.header h2{
+  text-align: center;
+  background-color: salmon;
+  margin: 0;
+}
+.form {
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 60%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+.login-btn {
+  background-color: #4CAF50; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar el ratón */
+  transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+  margin: .5rem;
+}
+.login-btn:hover {
+  background-color: #3e8e41; /* Color de fondo al pasar el cursor */
+}
+.input-group{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: .5rem;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+}
+.consulta {
+  display: flex;
+  flex-direction: column;
+  color: rgb(77, 25, 3)  ;  
+  font-weight: 900;
+}
+.form-input{
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+}
+.form-input:focus{
+  outline: none;
+}
+.link{
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  margin: 1rem;
+  padding: .3rem;
+  background-color: rgb(24, 149, 165);
+  border-radius: 5px;
+}
