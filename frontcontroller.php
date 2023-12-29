@@ -1,5 +1,10 @@
 <?php
 
+require 'controllers/LoginController.php';
+//crea unainstancia de LoginController
+$loginController = new LoginController();
+
+
 // Verificar si el usuario está logueado y redirigir según sea necesario
 if (isset($_SESSION['usuario'])) {
     if (isset($_GET['controller']) && $_GET['controller'] === 'Videoclub') {
@@ -7,22 +12,24 @@ if (isset($_SESSION['usuario'])) {
         header('Location: /views/zonaprivada.php');
         exit;
     } else {
-        // Redirige a la página de inicio de la aplicación
-        // Puedes cambiar la URL según la estructura de tu proyecto
+        // Si está intentando acceder a cualquier otra página y ya está logueado, redirige a index.php
         header('Location: /index.php');
         exit;
     }
-} else if (isset($_GET['controller']) && $_GET['controller'] === 'Videoclub') {
+} elseif (isset($_GET['controller']) && $_GET['controller'] === 'Videoclub') {
     // Si no está logueado, redirige a la página de inicio de sesión
     header('Location: /views/login.php');
     exit;
 }
-//procesar el formulario
+
+// Procesar el formulario de inicio de sesión
 if (isset($_POST['login_user'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    // Llamamos al método de LoginController para procesar el inicio de sesión
     $loginController->login($username, $password);
-} 
+}
+
 
 ?>

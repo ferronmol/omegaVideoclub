@@ -1,4 +1,12 @@
 <!--  Vista para el registro de usuarios -->
+<?php
+
+// Verificar si hay un mensaje de error
+if (isset($_GET['error'])) {
+    $errorMessage = urldecode($_GET['error']);
+    echo '<p style="color: red;">' . htmlspecialchars($errorMessage) . '</p>';
+}
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -43,13 +51,4 @@
 </body>
 
 </html>
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo '<div style="margin-top: 20px; background-color: #f0f0f0; padding: 10px;">';
-    echo '<h3>Datos Enviados:</h3>';
-    echo '<p>Nombre de Usuario: ' . htmlspecialchars($_POST['username']) . '</p>';
-    echo '<p>Contraseña: ' . htmlspecialchars($_POST['password']) . '</p>';
-    echo '</div>';
-}
-?>
 

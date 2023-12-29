@@ -1,25 +1,57 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+require_once '../db/DB.php';
+require_once '../models/UserModel.php';
 
-echo '<h1>Archivo de acción</h1>';
+class RegisterController
+{
+    private $userModel;
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Obtener los datos del formulario
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    public function __construct()
+    {
+        // Crear una instancia de DB
+        $db = new DB();
 
-    // Mostrar los datos en la consola
-    echo '<script>';
-    echo 'console.log("Datos recibidos en el archivo de acción:");';
-    echo 'console.log("Username: ' . $username . '");';
-    echo 'console.log("Password: ' . $password . '");';
-    echo '</script>';
+        // Crear una instancia de UserModel
+        $this->userModel = new UserModel($db);
+    }
+
+    public function store()
+{
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Obtener los datos del formulario
+        $username = isset($_POST['username']) ? $_POST['username'] : null;
+        $password = isset($_POST['password']) ? $_POST['password'] : null;
+
+        // Validar que se hayan enviado ambos campos
+        if ($username !== null && $password !== null) {            
+
+            // llamamos al método del modelo para insertar en la base de datos
+            try {
+                $result = $this->userModel->insertarUsuario($username, $password, "0");
+
+                // Verificar el resultado del modelo
+                if ($result) {
+                    // Si el resultado es exitoso, redirigir al usuario a la página de inicio de sesión
+                    header('Location: ../views/login.php?success=Usuario registrado correctamente');
+                    exit;
+                } else {
+                    // Si el resultado no es exitoso, mostrar un mensaje de error
+                    throw new Exception("Hubo un problema al intentar registrse.Intentelo de nuevo más tarde.");
+                }
+            } catch (Exception $e) {
+                // Capturar la excepción y redirigir con un mensaje de error
+                $errorMessage = urlencode($e->getMessage());
+                header("Location: ../views/register.php?error=$errorMessage");
+                exit;
+            }            
+        } 
+    } 
 }
 
-// Puedes agregar aquí la lógica adicional que necesites
+}
 
-// Redirigir a la página de registro
-// header('Location: register.php');
-// exit();
-?>
+// Crear una instancia de RegisterController
+$registerController = new RegisterController();
+
+// Llamar a la función store
+$registerController->store();

@@ -43,27 +43,42 @@ class UserModel
     ************METODOS PARA USUARIOS************
     */
 
+    // Método para insertar un usuario en la base de datos
     public function insertarUsuario($username, $password, $rol)
-    {
-        try {
-            $sql = "INSERT INTO usuarios (username, password, rol) VALUES (?, ?, ?)";
-            $stmt = $this->db->getPDO()->prepare($sql);
-            $result = $stmt->execute([$username, $password, $rol]);
+{
+    try {
+        // Validar longitud mínima del password
+        if (strlen($password) < 4) {
+            throw new Exception("Error: La longitud mínima del password es 4 caracteres.");
+        }
 
-            if ($result) {
-                return true;
+        // Encriptación de la contraseña
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
+        $sql = "INSERT INTO usuarios (username, password, rol) VALUES (?, ?, ?)";
+        $stmt = $this->db->getPDO()->prepare($sql);
+        $result = $stmt->execute([$username, $passwordHash, $rol]);
+
+        if ($result) {
+            return true;
+        } else {
+            // Verificar si ocurrió una violación de la clave única (username)
+            $errorCode = $stmt->errorCode();
+            if ($errorCode === '23000' || strpos($stmt->errorInfo()[2], 'Duplicate entry') !== false) {
+                // Código de error 23000 indica violación de clave única
+                throw new Exception("Error: El nombre de usuario '$username' ya está en uso.");
             } else {
-                // Agrega información adicional sobre el error
-                print_r($stmt->errorInfo());
+                // Otro tipo de error
                 throw new Exception("Error al ejecutar la consulta: " . implode(", ", $stmt->errorInfo()));
             }
-        } catch (Exception $ex) {
-            // Puedes manejar el error de alguna manera, como mostrar un mensaje al usuario
-            echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
-            return false;
         }
+    } catch (Exception $ex) {
+        // Redirigir a la página de registro con un mensaje de error
+        header('Location: ../views/register.php?error=' . urlencode($ex->getMessage()));
+        exit();
     }
+}
+
 
     // Método para verificar si un usuario ya existe
     public function existeUsuario($username)
@@ -78,7 +93,7 @@ class UserModel
             return false;
         }
     }
-    
+
     public function actualizarUsuario($id, $username, $password, $rol)
     {
         try {
@@ -122,7 +137,29 @@ class UserModel
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $ex) {
             echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
+            return null;
+        }
+    }
+    // Método para verificar las credenciales del usuario
+    public function verificarCredenciales($username, $password)
+    {
+        try {
+            $sql = "SELECT * FROM usuarios WHERE username = ?";
+            $stmt = $this->db->getPDO()->prepare($sql);
+            $stmt->execute([$username]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($user && password_verify($password, $user['password'])) {
+                // Si el usuario existe y la contraseña coincide, retorna true
+                return true;
+            } else {
+                // Si el usuario no existe o la contraseña no coincide, retorna false
+                return false;
+            }
+        } catch (Exception $ex) {
+            echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
             return false;
         }
     }
+
 }
