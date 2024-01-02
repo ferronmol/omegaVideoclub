@@ -17,9 +17,16 @@ class Usuario
         $this->password = $password;
         $this->rol = $rol;
     }
+  // metodo magico sleep
+    public function __sleep()
+    {
+        return array('username', 'password', 'rol');
+    }
+
+   
 
     // Método para obtener el nombre del usuario
-    public function getNombre()
+    public function getUsername()
     {
         return $this->username;
     }
@@ -28,6 +35,17 @@ class Usuario
     public function getPassword()
     {
         return $this->password;
+    }
+
+    // Método para obtener el rol del usuario
+    public function getRol()
+    {
+        return $this->rol;
+    }
+    //metodo para obtener el id del usuario
+    public function getId()
+    {
+        return $this->id;
     }
 }
 class UserModel
@@ -128,18 +146,32 @@ class UserModel
             return false;
         }
     }
+    // Método para obtener un objeto usuario por su nombre de usuario
+    
     public function getUsuario($username)
     {
         try {
             $sql = "SELECT id, username, password, rol FROM usuarios WHERE username = ?";
             $stmt = $this->db->getPDO()->prepare($sql);
             $stmt->execute([$username]);
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+
+           $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+           if ($result) {
+            //devueve un objeto usuario
+               return new Usuario($result['username'], $result['password'], $result['rol']);
+           } else {
+               return new Usuario($username, '', 0);
+           }
         } catch (Exception $ex) {
             echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
-            return null;
+            return new Usuario($username, '', 0);
         }
     }
+
+
+
+  
     // Método para verificar las credenciales del usuario
     public function verificarCredenciales($username, $password)
     {
@@ -161,5 +193,11 @@ class UserModel
             return false;
         }
     }
-
+    
 }
+function micargador($class)
+{
+    include '../models/' . $class . '.php';
+}
+
+spl_autoload_register('micargador');

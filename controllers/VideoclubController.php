@@ -1,13 +1,23 @@
 <?php
-require_once __DIR__ . '/../models/VideoclubModel.php'; // Asegúrate de incluir el modelo correspondiente
+require_once __DIR__ . '/../models/VideoclubModel.php'; // Incluir el modelo de películas
+
 
 class VideoclubController
 {
     private $videoclubModel;
+    private $peliculasInfo;
 
     public function __construct()
     {
-        $this->videoclubModel = new VideoclubModel(); // Crea una instancia del modelo
+        //si el usuario no esta logueado 
+        if (!isset($_SESSION['usuario'])) {
+            //lo redirijo a la pagina de login
+            header('Location: ../views/login.php');
+            exit;
+        }
+        //si el usuario esta logueado
+        // Crear una instancia del modelo de películas
+        $this->videoclubModel = new VideoclubModel();
     }
 
     public function listarPeliculas()
@@ -15,9 +25,10 @@ class VideoclubController
         // Obtener la lista de películas con su reparto
         $peliculas = $this->videoclubModel->getPeliculas();
 
-        // Puedes cargar la vista correspondiente para mostrar la lista de películas
-        // y los enlaces de "Modificar" y "Borrar" para los administradores
-        include_once '../views/lista_peliculas.php';
+        // Obtener la lista de títulos de películas
+        $titulosPeliculas = $this->videoclubModel->getTitulosPeliculas();
+        //mandarlo a la vista
+       include_once '../views/zonaprivada.php';
     }
 
     public function borrarPelicula($idPelicula)
@@ -37,6 +48,11 @@ class VideoclubController
         }
     }
 
-    // Otras funciones para añadir y modificar películas según sea necesario
+    public function listarTitulosPeliculas()
+    {
+        // Obtener la lista de títulos de películas
+        $titulosPeliculas = $this->videoclubModel->getTitulosPeliculas();
+        return $titulosPeliculas;
+        
+    }
 }
-?>

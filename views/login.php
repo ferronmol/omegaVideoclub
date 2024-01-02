@@ -1,5 +1,5 @@
 <?php
-require_once '../frontcontroller.php';
+require_once '../controllers/LoginController.php';
 // Verificar si hay un mensaje de éxito
 if (isset($_GET['success'])) {
     $successMessage = urldecode($_GET['success']);
@@ -31,21 +31,6 @@ if (isset($_GET['error'])) {
         <h2 class="consulta">Entra en nuestro videoclub. Un mundo "de película" te espera.</h2>
 
         <form class="form" action="login.php" method="post">
-            <?php
-            // Verificar si hay errores antes de mostrar el div
-            if (isset($_GET['errorNotFound'])) {
-            ?>
-                <div class="error">
-                    <h3>El usuario no se encuentra registrado</h3>
-                </div>
-            <?php } //fin del error de un usuario no encontrado
-            if (isset($_GET['errorNotMatch'])) {
-            ?>
-                <div class="error">
-                    <h3>Usuario y/o contraseña no válidas</h3>
-                </div>
-            <?php } //Fin del error de credenciales no válidas
-            ?>
             <div class="input-group">
                 <label for="username">Nombre de Usuario</label>
                 <input type="text" required name="username">

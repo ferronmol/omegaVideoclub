@@ -1,0 +1,9 @@
+[2024-01-02 17:02:24] - Usuario: Desconocido - Acción: Cierre de sesión
+[2024-01-02 17:13:22] - Usuario: Desconocido - Acción: Cierre de sesión
+[2024-01-02 18:27:58] - Usuario: Desconocido - Acción: Cierre de sesión
+[2024-01-02 18:40:23] - Usuario: Desconocido - Acción: Cierre de sesión
+[2024-01-02 18:47:56] - Usuario: Desconocido - Acción: Cierre de sesión
+[2024-01-02 19:19:17] - Usuario: Desconocido - Acción: Cierre de sesión
+[2024-01-02 19:22:34] - Usuario: Desconocido - Acción: Cierre de sesión
+[2024-01-02 19:38:39] - Usuario: Desconocido - Acción: Cierre de sesión
+[2024-01-02 19:43:58] - Usuario: Desconocido - Acción: Cierre de sesión

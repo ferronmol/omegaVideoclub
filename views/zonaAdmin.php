@@ -1,10 +1,9 @@
 <?php
 require_once '../controllers/VideoclubController.php';
 require '../controllers/LoginController.php';
-//creo un objeto videoclubController
-$videoclubController = new VideoclubController();
+session_start();
 //recupero los datos del usuario de la sesion que debe se run objeto usuario
-$_SESSION['usuario'];
+var_dump($_SESSION['usuario']);
 ?>
 
 <!DOCTYPE html>
@@ -54,36 +53,20 @@ $_SESSION['usuario'];
     </header>
     <div class="visor visorindex">
         <!--creo un boton para hacer logout -->
-        <form action="../controllers/LogoutController.php" method="post">
-            <button type="submit" class="link">Cerrar sesión</button>
-        </form>
-
-        <div class="exito">Bienvenido usuario
-            <?php
-            //muestro el nombre del usuario del objeto usuario en mayusculas
-
-            echo strtoupper($_SESSION['usuario']->getUsername());
-            ?>
-
-            . Estas es tu zona privada.
-        </div>
-        <div class="panel">
-            <h2>Listado de Películas</h2>
-            <!-- Mostrar solo los títulos -->
-            <ul>
-                <?php 
-                //recupero los titulos de las peliculas
-             $titulosPeliculas = $videoclubController->listarTitulosPeliculas();
-                //recorro el array de titulos de peliculas
-                
-                foreach ($titulosPeliculas as $titulo) : ?>
-                    <li><?= $titulo['titulo'] ?></li>
-                <?php endforeach; ?>
-                
-            </ul>
-
-
-        </div>
+        <a href="../controllers/Logout.php" class="btn btn-success">Logout</a>
+    <div class="exito">Bienvenido Administrador
+         <?php
+          //muestro los datos del usuario que esta en la sesion
+        //   echo $_SESSION['usuario'];
+          ?>
+     . Estas es tu zona privada.
+    </div>  
+     <!-- Llamada a la acción para mostrar películas -->
+     <?php
+    $videoclubController = new VideoclubController();
+    // $videoclubController->listarPeliculas();
+    ?>
+    
     </div>
 </body>
 

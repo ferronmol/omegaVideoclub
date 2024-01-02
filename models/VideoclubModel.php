@@ -86,10 +86,37 @@ class Actor
 class VideoclubModel extends PDOModel {
 public function getPeliculas()
     {
-        $query = "SELECT id, titulo, genero, pais, anyo, cartel FROM peliculas";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $peliculas = [];
+     try {
+            $query = "SELECT id, titulo, genero, pais, anyo, cartel FROM peliculas";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute();
+            // Obtener la lista de películas con su reparto utilizo el metodo fetchAll para obtener un array con todas las filas
+            $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // Puedes manejar el error de alguna manera, como mostrar un mensaje al usuario
+            echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
+        }
+        return $peliculas;
+        //depuro
+        //var_dump($peliculas);
+
+    }
+    public function getTitulosPeliculas(){
+        $titulosPeliculas = [];
+        try {
+            $query = "SELECT titulo FROM peliculas";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute();
+            // Obtener la lista de títulos de películas
+            $titulosPeliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // Puedes manejar el error de alguna manera, como mostrar un mensaje al usuario
+            echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
+        }
+        return $titulosPeliculas;
+        //depuro
+        //var_dump($titulosPeliculas);
     }
 
     public function agregarPelicula(Pelicula $pelicula)

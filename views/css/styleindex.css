@@ -151,7 +151,7 @@ body {
   align-items: center;
 }
 .exito {
-  width: 92%;
+  width: 30%;
   margin: 0px auto;
   padding: 10px;
   border: 1px solid #3c763d;
@@ -232,7 +232,7 @@ body {
   position: relative;
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 .visorindex{
@@ -308,4 +308,16 @@ body {
   padding: .3rem;
   background-color: rgb(24, 149, 165);
   border-radius: 5px;
+}
+.panel{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 60%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  border: 2px solid red;
+  margin-top: .5rem;
 }
