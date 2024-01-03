@@ -1,5 +1,5 @@
 <?php
-require_once '../models/UserModel.php';  
+require_once '../models/UserModel.php';
 session_start();
 class LoginController
 {
@@ -25,19 +25,25 @@ class LoginController
 
             // Credenciales correctas, si es usuario normal redirigir a la zona privada
             if ($_SESSION['usuario']->getRol() == 0) {
-                 header('Location: ../views/zonaprivada.php');
-                 exit;
+                header('Location: ../views/zonaprivada.php');
+                exit;
             }
             // Credenciales correctas, si es administrador redirigir a la zona privada
             if ($_SESSION['usuario']->getRol() == 1) {
-                 header('Location: ../views/zonaAdmin.php');
-                 exit;
+                header('Location: ../views/zonaAdmin.php');
+                exit;
             }
         } else {
             // Credenciales incorrectas, redirigir con un mensaje de error
+
+            // echo password_hash('1234', PASSWORD_DEFAULT);
+            if ($usuario && password_verify($password, $usuario->getPassword())) {
+                // Resto del código
+            }
+
             $errorMessage = urlencode('Credenciales incorrectas');
-            header("Location: ../views/login.php?error=$errorMessage");
-            exit;
+            // header("Location: ../views/login.php?error=$errorMessage");
+            // exit;
         }
     }
 }
@@ -51,7 +57,3 @@ if (isset($_POST['login_user'])) {
     //llamo al metodo login del controlador
     $loginController->login($username, $password);
 }
-
-
-
-

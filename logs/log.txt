@@ -7,3 +7,5 @@
 [2024-01-02 19:22:34] - Usuario: Desconocido - Acción: Cierre de sesión
 [2024-01-02 19:38:39] - Usuario: Desconocido - Acción: Cierre de sesión
 [2024-01-02 19:43:58] - Usuario: Desconocido - Acción: Cierre de sesión
+[2024-01-03 17:27:28] - Usuario: Desconocido - Acción: Cierre de sesión
+[2024-01-03 18:03:41] - Usuario: Desconocido - Acción: Cierre de sesión

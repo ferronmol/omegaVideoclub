@@ -37,7 +37,7 @@ $_SESSION['usuario'];
                     <a href="#" class="nav__link"><span class="char">S</span>ervicios</a>
                 </li>
                 <li class="nav__item">
-                    <a href="#" class="nav__link"><span class="char">C</span>ontacto</a>
+                    <a href="../pages/asistencia.php" class="nav__link"><span class="char">A</span>sistencia</a>
                 </li>
 
             </ul>
@@ -61,11 +61,9 @@ $_SESSION['usuario'];
         <div class="exito">Bienvenido usuario
             <?php
             //muestro el nombre del usuario del objeto usuario en mayusculas
-
             echo strtoupper($_SESSION['usuario']->getUsername());
             ?>
-
-            . Estas es tu zona privada.Estas son las peliculas que tenemos en el videoclub
+            . Estás es tu zona privada.<br> Éstas son las películas que tenemos en el Videoclub.
         </div>
         <div class="panel">
             <h2 class="title">Listado de Películas</h2>
@@ -93,12 +91,9 @@ $_SESSION['usuario'];
                         </div>
                     </div>
                 <?php endforeach; ?>
-            </div>
+            </div>            
         </div>
-
-
     </div>
 </body>
-
 
 </html>
