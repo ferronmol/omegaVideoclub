@@ -309,15 +309,65 @@ body {
   background-color: rgb(24, 149, 165);
   border-radius: 5px;
 }
+/********ESTILOS DE LISTAR LAS PELICULAS Y SU REPARTO***********/
 .panel{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 60%;
-  height: 60%;
+  height: 70%;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   border: 2px solid red;
   margin-top: .5rem;
+}
+.title{
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1rem;
+}
+.peliculas-container {
+  display: flex;
+  background-image: white;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+.pelicula {
+  background: #ccc;
+  border: 2px solid black;
+  margin: 10px;
+  padding: 10px;
+  width: 300px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.detalle-pelicula {
+  margin-top: 10px;
+}
+
+.detalle-pelicula img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.page-link {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  text-decoration: none;
+  color: #333;
+  border-radius: 5px;
 }

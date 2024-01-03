@@ -65,25 +65,38 @@ $_SESSION['usuario'];
             echo strtoupper($_SESSION['usuario']->getUsername());
             ?>
 
-            . Estas es tu zona privada.
+            . Estas es tu zona privada.Estas son las peliculas que tenemos en el videoclub
         </div>
         <div class="panel">
-            <h2>Listado de Películas</h2>
-            <!-- Mostrar solo los títulos -->
-            <ul>
-                <?php 
-                //recupero los titulos de las peliculas
-             $titulosPeliculas = $videoclubController->listarTitulosPeliculas();
-                //recorro el array de titulos de peliculas
-                
-                foreach ($titulosPeliculas as $titulo) : ?>
-                    <li><?= $titulo['titulo'] ?></li>
+            <h2 class="title">Listado de Películas</h2>
+            <div class="peliculas-container">
+                <?php
+                $peliculasInfo = $videoclubController->listarPeliculasDetalladas();
+                foreach ($peliculasInfo as $pelicula) : ?>
+                    <div class="pelicula">
+                        <img src="data:image/jpeg;base64,<?php echo $pelicula['pelicula_cartel']; ?>" alt="Cartel de la película">
+                        <div class="detalle-pelicula">
+                            <h3><?php echo $pelicula['pelicula_titulo']; ?></h3>
+                            <p>Género: <?php echo $pelicula['pelicula_genero']; ?></p>
+                            <p>País: <?php echo $pelicula['pelicula_pais']; ?></p>
+                            <p>Año: <?php echo $pelicula['pelicula_anyo']; ?></p>
+                            <h4>Actores:</h4>
+                            <ul>
+                                <?php foreach ($pelicula['actores'] as $actor) : ?>
+                                    <li>
+                                        <strong>Nombre:</strong> <?php echo $actor['actor_nombre']; ?><br>
+                                        <strong>Apellidos:</strong> <?php echo $actor['actor_apellidos']; ?><br>
+                                        <img src="data:image/jpeg;base64,<?php echo $actor['actor_fotografia']; ?>" alt="Foto del actor">
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    </div>
                 <?php endforeach; ?>
-                
-            </ul>
-
-
+            </div>
         </div>
+
+
     </div>
 </body>
 

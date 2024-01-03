@@ -102,22 +102,7 @@ public function getPeliculas()
         //var_dump($peliculas);
 
     }
-    public function getTitulosPeliculas(){
-        $titulosPeliculas = [];
-        try {
-            $query = "SELECT titulo FROM peliculas";
-            $stmt = $this->pdo->prepare($query);
-            $stmt->execute();
-            // Obtener la lista de títulos de películas
-            $titulosPeliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            // Puedes manejar el error de alguna manera, como mostrar un mensaje al usuario
-            echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
-        }
-        return $titulosPeliculas;
-        //depuro
-        //var_dump($titulosPeliculas);
-    }
+   
 
     public function agregarPelicula(Pelicula $pelicula)
     {
@@ -154,6 +139,59 @@ public function getPeliculas()
             return false;
         }
     }
-    
+    /*************************** */
+     //creo esat funcion como paso previo para listar las peliculas complets con su reparto
+     public function getTitulosPeliculas(){
+        $titulosPeliculas = [];
+        try {
+            $query = "SELECT titulo FROM peliculas";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute();
+            // Obtener la lista de títulos de películas
+            $titulosPeliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // Puedes manejar el error de alguna manera, como mostrar un mensaje al usuario
+            echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
+        }
+        return $titulosPeliculas;
+        //depuro
+        //var_dump($titulosPeliculas);
+    }
+    public function getPeliculasDetalladas()
+{
+    $peliculasDetalladas = [];
+    try {
+        // Obtener la lista de películas con su reparto
+        $query = "SELECT
+        peliculas.id AS pelicula_id,
+        peliculas.titulo AS pelicula_titulo,
+        peliculas.genero AS pelicula_genero,
+        peliculas.pais AS pelicula_pais,
+        peliculas.anyo AS pelicula_anyo,
+        peliculas.cartel AS pelicula_cartel,
+        actores.id AS actor_id,
+        actores.nombre AS actor_nombre,
+        actores.apellidos AS actor_apellidos,
+        actores.fotografia AS actor_fotografia
+    FROM
+        peliculas
+    JOIN actuan ON peliculas.id = actuan.idpelicula
+    JOIN actores ON actuan.idactor = actores.id
+    WHERE peliculas.id = actuan.idpelicula";
+        
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        // Obtener la lista de películas detalladas
+        $peliculasDetalladas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+    } catch (PDOException $e) {
+        // Manejar errores como desees
+        echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
+    }
+    return $peliculasDetalladas;
+    var_dump($peliculasDetalladas);
+}
+
 }
 ?>
