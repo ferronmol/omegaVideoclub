@@ -57,16 +57,49 @@ $_SESSION['usuario'];
         <form action="../controllers/LogoutController.php" method="post">
             <button type="submit" class="link">Cerrar sesión</button>
         </form>
-    <div class="exito">Bienvenido Administrador
-         <?php
-         //muestro el nombre del usuario del objeto usuario en mayusculas
-         echo strtoupper($_SESSION['usuario']->getUsername());
-          ?>
-     . Estas es tu zona privada.
-    </div>  
-     <div class="panel">
-        
-     </div>
+        <div class="exito">Bienvenido Administrador
+            <?php
+            //muestro el nombre del usuario del objeto usuario en mayusculas
+            echo strtoupper($_SESSION['usuario']->getUsername());
+            ?>
+            . Estas es tu zona privada.
+        </div>
+        <div class="panel">
+            <h2 class="title">Listado de Películas</h2>
+            <div class="peliculas-container">
+                <?php
+                $peliculasInfo = $videoclubController->listarPeliculasDetalladas();
+                foreach ($peliculasInfo as $pelicula) : ?>
+                    <div class="pelicula">
+                        <img src="data:image/jpeg;base64,<?php echo $pelicula['pelicula_cartel']; ?>" alt="Cartel de la película">
+                        <div class="detalle-pelicula">
+                            <h3><?php echo $pelicula['pelicula_titulo']; ?></h3>
+                            <p>Género: <?php echo $pelicula['pelicula_genero']; ?></p>
+                            <p>País: <?php echo $pelicula['pelicula_pais']; ?></p>
+                            <p>Año: <?php echo $pelicula['pelicula_anyo']; ?></p>
+                            <h4>Actores:</h4>
+                            <ul>
+                                <?php foreach ($pelicula['actores'] as $actor) : ?>
+                                    <li>
+                                        <strong>Nombre:</strong> <?php echo $actor['actor_nombre']; ?><br>
+                                        <strong>Apellidos:</strong> <?php echo $actor['actor_apellidos']; ?><br>
+                                        <img src="data:image/jpeg;base64,<?php echo $actor['actor_fotografia']; ?>" alt="Foto del actor">
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <!-- Si es administrador muestro botón de MODIFICAR y BORRAR -->
+                            <?php 
+                            if ($_SESSION['usuario']->getRol() == 1) : ?>
+                            <div class="borrar-button-container">
+                                <a href="../controllers/VideoclubController.php?action=modificarPelicula&idPelicula=<?php echo $pelicula['pelicula_id']; ?>" class="link">Modificar</a>
+                                <a href="../controllers/VideoclubController.php?action=borrarPelicula&idPelicula=<?php echo $pelicula['pelicula_id']; ?>" class="link">Borrar</a>
+                            <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
 </body>
 
 </html>

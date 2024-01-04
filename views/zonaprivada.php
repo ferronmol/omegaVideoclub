@@ -58,12 +58,13 @@ $_SESSION['usuario'];
             <button type="submit" class="link">Cerrar sesión</button>
         </form>
 
-        <div class="exito">Bienvenido usuario
-            <?php
-            //muestro el nombre del usuario del objeto usuario en mayusculas
-            echo strtoupper($_SESSION['usuario']->getUsername());
-            ?>
-            . Estás es tu zona privada.<br> Éstas son las películas que tenemos en el Videoclub.
+        <div class="exito">
+            <p class="text">Bienvenido usuario
+                <?php
+                //muestro el nombre del usuario del objeto usuario en mayusculas
+                echo strtoupper($_SESSION['usuario']->getUsername());
+                ?>
+                . Estás es tu zona privada.</p>
         </div>
         <div class="panel">
             <h2 class="title">Listado de Películas</h2>
@@ -88,10 +89,19 @@ $_SESSION['usuario'];
                                     </li>
                                 <?php endforeach; ?>
                             </ul>
+                            <!-- Si es administrador muestro botón de MODIFICAR y BORRAR -->
+                            <?php
+                            if ($_SESSION['usuario']->getRol() == 1) : ?>
+                                <div class="borrar-button-container">
+                                    <a href="../controllers/VideoclubController.php?action=borrarPelicula&idPelicula=<?php echo $pelicula['pelicula_id']; ?>" class="link">Borrar</a>
+                                    <!-- Añadir el botón de Modificar aquí -->
+                                    <a href="../controllers/VideoclubController.php?action=modificarPelicula&idPelicula=<?php echo $pelicula['pelicula_id']; ?>" class="link">Modificar</a>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
-            </div>            
+            </div>
         </div>
     </div>
 </body>

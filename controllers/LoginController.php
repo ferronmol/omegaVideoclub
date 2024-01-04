@@ -1,6 +1,10 @@
 <?php
 require_once '../models/UserModel.php';
-session_start();
+//si no existe la sesion
+if (session_status() == PHP_SESSION_NONE) {
+    //la creo
+    session_start();
+}
 class LoginController
 {
     private $userModel;

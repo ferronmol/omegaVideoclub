@@ -1,7 +1,15 @@
 <?php
-require_once __DIR__ . '/../models/VideoclubModel.php'; // Incluir el modelo de películas
-
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+//necesito primero la clase usuario
+require_once __DIR__ . '/../models/UserModel.php';
+// Me aseguro  de que ya hay una sesión iniciada
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require_once __DIR__ . '/../models/VideoclubModel.php'; 
+// var_dump($_SESSION['usuario']); // ok
+// var_dump($_SESSION['exito_modificacion']); // ok
 class VideoclubController
 {
     private $videoclubModel;
@@ -43,8 +51,11 @@ class VideoclubController
             exit();
         } else {
             // Puedes redirigir a una página de error si el usuario no tiene permisos
-            header('Location: ./error.php');
-            exit();
+            //depuro
+            echo 'no tienes permisos';
+
+            // header('Location: ./error.php');
+            // exit();
         }
     }
 
@@ -62,58 +73,126 @@ class VideoclubController
         //quiero que me devuelva un array con las peliculas detalladas pero que en cada pelicula tenga un array con los actores
         //que cada pelicula tenga un array con los actores
         $peliculasConActores = [];
-      // Recorrer el array de películas detalladas
-    foreach ($peliculasDetalladas as $pelicula) {
-        // Si la película no está en el array de películas con actores
-        if (!array_key_exists($pelicula['pelicula_id'], $peliculasConActores)) {
-            // Crear un array con los datos de la película
-            $peliculasConActores[$pelicula['pelicula_id']] = [
-                'pelicula_id' => $pelicula['pelicula_id'],
-                'pelicula_titulo' => $pelicula['pelicula_titulo'],
-                'pelicula_genero' => $pelicula['pelicula_genero'],
-                'pelicula_pais' => $pelicula['pelicula_pais'],
-                'pelicula_anyo' => $pelicula['pelicula_anyo'],
-                'pelicula_cartel' => base64_encode($pelicula['pelicula_cartel']),
-                'actores' => []
+        // Recorrer el array de películas detalladas
+        foreach ($peliculasDetalladas as $pelicula) {
+            // Si la película no está en el array de películas con actores
+            if (!array_key_exists($pelicula['pelicula_id'], $peliculasConActores)) {
+                // Crear un array con los datos de la película
+                $peliculasConActores[$pelicula['pelicula_id']] = [
+                    'pelicula_id' => $pelicula['pelicula_id'],
+                    'pelicula_titulo' => $pelicula['pelicula_titulo'],
+                    'pelicula_genero' => $pelicula['pelicula_genero'],
+                    'pelicula_pais' => $pelicula['pelicula_pais'],
+                    'pelicula_anyo' => $pelicula['pelicula_anyo'],
+                    'pelicula_cartel' => base64_encode($pelicula['pelicula_cartel']),
+                    'actores' => []
+                ];
+            }
+            // Añadir el actor al array de actores de la película
+            $peliculasConActores[$pelicula['pelicula_id']]['actores'][] = [
+                'actor_id' => $pelicula['actor_id'],
+                'actor_nombre' => $pelicula['actor_nombre'],
+                'actor_apellidos' => $pelicula['actor_apellidos'],
+                'actor_fotografia' => base64_encode($pelicula['actor_fotografia'])
             ];
         }
-        // Añadir el actor al array de actores de la película
-        $peliculasConActores[$pelicula['pelicula_id']]['actores'][] = [
-            'actor_id' => $pelicula['actor_id'],
-            'actor_nombre' => $pelicula['actor_nombre'],
-            'actor_apellidos' => $pelicula['actor_apellidos'],
-            'actor_fotografia' => base64_encode($pelicula['actor_fotografia'])
-        ];
+
+        // Devolver el array de películas con actores
+        return array_values($peliculasConActores);
     }
-
-    // Devolver el array de películas con actores
-    return array_values($peliculasConActores);
-    }
-
-    public function guardarFotosActores()
-{
-    // Obtener la lista de películas detalladas del modelo (con su reparto y duplicados)
-    $peliculasDetalladas = $this->videoclubModel->getPeliculasDetalladas();
-
-    foreach ($peliculasDetalladas as $pelicula) {
-        foreach ($pelicula['actores'] as $actor) {
-            // Comprobar si el actor tiene una foto
-            if (isset($actor['actor_fotografia'])) {
-                // Crear la ruta al archivo de la imagen
-                $rutaImagen = "../views/images/actores/" . $actor['actor_fotografia'];
-
-                // Comprobar si el archivo ya existe
-                if (!file_exists($rutaImagen)) {
-                    // Obtener los datos de la imagen de la base de datos
-                    $datosImagen = $actor['actor_fotografia'];
-
-                    // Guardar los datos de la imagen en un archivo
-                    file_put_contents($rutaImagen, $datosImagen);
-                }
+    // funcion para actualizar una pelicula
+    public function actualizarPelicula($idPelicula)
+    {
+        // Obtener la lista de películas detalladas del modelo (con su reparto y duplicados)
+        $peliculasDetalladas = $this->videoclubModel->getPeliculaDetallada($idPelicula);
+        $peliculasConActores = [];
+        // Recorrer el array de películas detalladas
+        foreach ($peliculasDetalladas as $pelicula) {
+            // Si la película no está en el array de películas con actores
+            if (!array_key_exists($pelicula['pelicula_id'], $peliculasConActores)) {
+                // Crear un array con los datos de la película
+                $peliculasConActores[$pelicula['pelicula_id']] = [
+                    'pelicula_id' => $pelicula['pelicula_id'],
+                    'pelicula_titulo' => $pelicula['pelicula_titulo'],
+                    'pelicula_genero' => $pelicula['pelicula_genero'],
+                    'pelicula_pais' => $pelicula['pelicula_pais'],
+                    'pelicula_anyo' => $pelicula['pelicula_anyo'],
+                    'pelicula_cartel' => base64_encode($pelicula['pelicula_cartel']),
+                    'actores' => []
+                ];
             }
+            // Añadir el actor al array de actores de la película
+            $peliculasConActores[$pelicula['pelicula_id']]['actores'][] = [
+                'actor_id' => $pelicula['actor_id'],
+                'actor_nombre' => $pelicula['actor_nombre'],
+                'actor_apellidos' => $pelicula['actor_apellidos'],
+                'actor_fotografia' => base64_encode($pelicula['actor_fotografia'])
+            ];
         }
+
+        // Devolver el array de películas con actores
+        return array_values($peliculasConActores);
+    }
+//funcion para guardar los datos del form de modificacion
+
+public function guardarModificacionPelicula($idPelicula)
+{
+    echo 'esta es la funcion guardarModificacionPelicula';
+    // Verificar si el usuario tiene permisos para modificar
+    if ($_SESSION['usuario']->getRol() == 1) {
+        // Obtener los datos del formulario filtrando los datos recibidos
+        $titulo = $_POST['titulo'];
+        $genero = $_POST['genero'];
+        $pais = $_POST['pais'];
+        $anyo = $_POST['anyo'];
+
+        // Lógica para guardar los datos de la película
+        $exito = $this->videoclubModel->setModificacionPelicula($titulo, $genero, $pais, $anyo, $idPelicula);
+
+        if ($exito) {
+            //muestro un mensaje de exito con la modificacion
+            $_SESSION['exito_modificacion'] = '¡La película se modificó con éxito!';
+            // redirigo a la zona de edicion con el mensaje de exito
+             header('Location: ../views/edit_film.php?idPelicula='.$idPelicula. '&exito_modificacion=1');
+            exit();
+        
+        } else {
+            // Manejar el error de alguna manera, como mostrar un mensaje al usuario
+            echo '<p class="error">Hubo un problema al modificar la película.</p>';
+        }
+    } else {
+        // Redirigir a una página de error si el usuario no tiene permisos
+        header('Location: ../views/error.php');
+        exit();
     }
 }
 
 }
+/************************************************************************************************************* */
+//si el action es modificarPelicula
+if (isset($_GET['action']) && $_GET['action'] == 'modificarPelicula') {
+    //permisos
+    if (isset($_SESSION['usuario']) && $_SESSION['usuario']->getRol() == 1) {
+        
+    //recupero el id de la pelicula que quiero modificar
+    $idPelicula = $_GET['idPelicula'];  
+     //llevo al form que me permite modificar la pelicula
+     header('Location: ../views/edit_film.php?idPelicula='.$idPelicula);
+     exit();
+    } else {
+        // Redirigir a una página de error si el usuario no tiene permisos
+        header('Location: ../views/error.php');
+        exit();
+    }
+};
+//si el action es guardarModificacionPelicula
+if (isset($_GET['action']) && $_GET['action'] == 'guardarModificacionPelicula') {
+    //recupero el id de la pelicula que quiero modificar
+    $idPelicula = $_GET['idPelicula'];  
+    // Crear una instancia del controlador
+    $videoclubController = new VideoclubController();
+    // Llamar al método para guardar la modificación de la película
+    $videoclubController->guardarModificacionPelicula($idPelicula);
+    exit();
+};
 

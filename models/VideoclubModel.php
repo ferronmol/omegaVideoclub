@@ -1,11 +1,13 @@
 <?php
 
-class PDOModel {
+class PDOModel
+{
     private $bd;
     protected $pdo;
     //obtiene una instancia PDO para conectar con la base de datos
-    public function __construct() {
-        $this->pdo = new PDO('mysql:host=localhost;dbname=videoclub','root','');
+    public function __construct()
+    {
+        $this->pdo = new PDO('mysql:host=localhost;dbname=videoclub', 'root', '');
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->bd = new DB();
         $this->pdo = $this->bd->getPDO();
@@ -14,16 +16,16 @@ class PDOModel {
 
 
 /*********************PELICULAS*********************/
-class Pelicula 
+class Pelicula
 {
     private $id;
     private $titulo;
-    private $genero;    
+    private $genero;
     private $pais;
     private $anyo;
     private $cartel;
 
-    public function __construct($titulo, $genero, $pais, $anyo, $cartel) 
+    public function __construct($titulo, $genero, $pais, $anyo, $cartel)
     {
         $this->titulo = $titulo;
         $this->genero = $genero;
@@ -31,7 +33,7 @@ class Pelicula
         $this->anyo = $anyo;
         $this->cartel = $cartel;
     }
-    
+
     // Constructor para crear una instancia de Pelicula
     public function getTitulo()
     {
@@ -55,14 +57,15 @@ class Pelicula
     }
 }
 
-class Actor 
+class Actor
 {
     private $id;
     private $nombre;
     private $apellidos;
     private $fotografia;
 
-    public function __construct( $nombre, $apellidos, $fotografia) {
+    public function __construct($nombre, $apellidos, $fotografia)
+    {
         $this->nombre = $nombre;
         $this->apellidos = $apellidos;
         $this->fotografia = $fotografia;
@@ -72,22 +75,22 @@ class Actor
     {
         return $this->nombre;
     }
-    public function get_apellidos() 
+    public function get_apellidos()
     {
         return $this->apellidos;
     }
-    public function get_fotografia() 
+    public function get_fotografia()
     {
         return $this->fotografia;
     }
-  
-}	
+}
 
-class VideoclubModel extends PDOModel {
-public function getPeliculas()
+class VideoclubModel extends PDOModel
+{
+    public function getPeliculas()
     {
         $peliculas = [];
-     try {
+        try {
             $query = "SELECT id, titulo, genero, pais, anyo, cartel FROM peliculas";
             $stmt = $this->pdo->prepare($query);
             $stmt->execute();
@@ -102,7 +105,7 @@ public function getPeliculas()
         //var_dump($peliculas);
 
     }
-   
+
 
     public function agregarPelicula(Pelicula $pelicula)
     {
@@ -140,8 +143,9 @@ public function getPeliculas()
         }
     }
     /*************************** */
-     //creo esat funcion como paso previo para listar las peliculas complets con su reparto
-     public function getTitulosPeliculas(){
+    //creo esat funcion como paso previo para listar las peliculas complets con su reparto
+    public function getTitulosPeliculas()
+    {
         $titulosPeliculas = [];
         try {
             $query = "SELECT titulo FROM peliculas";
@@ -158,11 +162,11 @@ public function getPeliculas()
         //var_dump($titulosPeliculas);
     }
     public function getPeliculasDetalladas()
-{
-    $peliculasDetalladas = [];
-    try {
-        // Obtener la lista de películas con su reparto
-        $query = "SELECT
+    {
+        $peliculasDetalladas = [];
+        try {
+            // Obtener la lista de películas con su reparto
+            $query = "SELECT
         peliculas.id AS pelicula_id,
         peliculas.titulo AS pelicula_titulo,
         peliculas.genero AS pelicula_genero,
@@ -178,20 +182,66 @@ public function getPeliculas()
     JOIN actuan ON peliculas.id = actuan.idpelicula
     JOIN actores ON actuan.idactor = actores.id
     WHERE peliculas.id = actuan.idpelicula";
-        
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute();
-        // Obtener la lista de películas detalladas
-        $peliculasDetalladas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-    } catch (PDOException $e) {
-        // Manejar errores como desees
-        echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute();
+            // Obtener la lista de películas detalladas
+            $peliculasDetalladas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // Manejar errores como desees
+            echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
+        }
+        return $peliculasDetalladas;
     }
-    return $peliculasDetalladas;
-    var_dump($peliculasDetalladas);
-}
 
+    //funcion similar que recibe de parametro el id de la pelicula que quiero modificar
+    public function getPeliculaDetallada($idPelicula)
+    {
+        $pelicula = [];
+        try {
+            // Obtener la lista de películas con su reparto
+            $query = "SELECT
+        peliculas.id AS pelicula_id,
+        peliculas.titulo AS pelicula_titulo,
+        peliculas.genero AS pelicula_genero,
+        peliculas.pais AS pelicula_pais,
+        peliculas.anyo AS pelicula_anyo,
+        peliculas.cartel AS pelicula_cartel,
+        actores.id AS actor_id,
+        actores.nombre AS actor_nombre,
+        actores.apellidos AS actor_apellidos,
+        actores.fotografia AS actor_fotografia
+    FROM
+        peliculas
+    JOIN actuan ON peliculas.id = actuan.idpelicula
+    JOIN actores ON actuan.idactor = actores.id
+    WHERE peliculas.id = actuan.idpelicula AND peliculas.id = ?";
+
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$idPelicula]);
+            // Obtener la lista de películas detalladas
+            $pelicula = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // Manejar errores como desees
+            echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
+        }
+        return $pelicula;
+    }
+
+    //funcion para introducir los datos de la pelicula modificada
+
+    public function setModificacionPelicula($titulo, $genero, $pais, $anyo, $idPelicula)
+    {
+        try {
+            $query = "UPDATE peliculas SET titulo = ?, genero = ?, pais = ?, anyo = ? WHERE id = ?";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$titulo, $genero, $pais, $anyo, $idPelicula]);
+
+            return true;
+        } catch (PDOException $e) {
+            // Puedes manejar el error de alguna manera, como mostrar un mensaje al usuario
+            echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
+            return false;
+        }
+    }
 }
-?>
