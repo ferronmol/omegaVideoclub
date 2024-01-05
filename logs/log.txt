@@ -17,3 +17,18 @@
 [2024-01-04 18:19:30] - Usuario: Desconocido - Acción: Cierre de sesión
 [2024-01-04 18:20:40] - Usuario: Desconocido - Acción: Cierre de sesión
 [2024-01-04 20:20:44] - Usuario: Desconocido - Acción: Cierre de sesión
+[2024-01-05 11:17:06] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-05 11:19:10] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-05 11:26:04] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-05 11:27:44] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-05 11:32:20] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-05 11:35:30] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-05 11:36:27] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-05 11:38:21] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-05 11:39:33] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-05 18:16:12] - Usuario: admin - Rol: 1 - Acción: Cierre de sesión
+[2024-01-05 18:16:20] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-05 18:21:33] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-05 18:22:06] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-05 18:47:58] - Usuario: admin - Rol: 1 - Acción: Cierre de sesión
+[2024-01-05 18:48:05] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada

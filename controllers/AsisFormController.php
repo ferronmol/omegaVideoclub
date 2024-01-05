@@ -3,6 +3,8 @@ require '../models/Mailer.php';
 require '../models/FormAsis.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
+//creo una instancia de la clase PHPMailer
+$mail = new PHPMailer();
 
 
 class Controller {

@@ -1,10 +1,13 @@
+<?php
 require 'vendor/autoload.php'; // Asegúrate de incluir el archivo de la librería PHPMailer
+require '../controllers/AsisFormController.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 class Mailer {
-    public function sendEmail(FormAsis $formData) {
+    public function sendEmail($formData) {
+        // Crea una nueva instancia de PHPMailer
         $mail = new PHPMailer(true);
 
         try {

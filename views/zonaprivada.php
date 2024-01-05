@@ -31,13 +31,13 @@ $_SESSION['usuario'];
                     <a href="../index.php" class="nav__link"><span class="char">I</span>nicio</a>
                 </li>
                 <li class="nav__item">
-                    <a href="../pages/login.php" class="nav__link"><span class="char">A</span>cceso</a>
+                    <a href="../views/login.php" class="nav__link"><span class="char">A</span>cceso</a>
                 </li>
                 <li class="nav__item">
                     <a href="#" class="nav__link"><span class="char">S</span>ervicios</a>
                 </li>
                 <li class="nav__item">
-                    <a href="../pages/asistencia.php" class="nav__link"><span class="char">A</span>sistencia</a>
+                    <a href="../views/asistencia.php" class="nav__link"><span class="char">A</span>sistencia</a>
                 </li>
 
             </ul>
@@ -73,7 +73,9 @@ $_SESSION['usuario'];
                 $peliculasInfo = $videoclubController->listarPeliculasDetalladas();
                 foreach ($peliculasInfo as $pelicula) : ?>
                     <div class="pelicula">
-                        <img src="data:image/jpeg;base64,<?php echo $pelicula['pelicula_cartel']; ?>" alt="Cartel de la película">
+                        <div class="img-container">
+                            <img class="img-peli" src="<?php echo $pelicula['pelicula_cartel']; ?>" alt="Cartel de la película">
+                        </div>
                         <div class="detalle-pelicula">
                             <h3><?php echo $pelicula['pelicula_titulo']; ?></h3>
                             <p>Género: <?php echo $pelicula['pelicula_genero']; ?></p>

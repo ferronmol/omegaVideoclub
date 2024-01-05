@@ -230,12 +230,15 @@ class VideoclubModel extends PDOModel
 
     //funcion para introducir los datos de la pelicula modificada
 
-    public function setModificacionPelicula($titulo, $genero, $pais, $anyo, $idPelicula)
+    public function setModificacionPelicula($titulo, $genero, $pais, $anyo, $idPelicula, $rutaPelicula)
     {
         try {
-            $query = "UPDATE peliculas SET titulo = ?, genero = ?, pais = ?, anyo = ? WHERE id = ?";
+            //tengo que meter solo  el nombre de la imagin sin la ruta
+            $cartel = basename($rutaPelicula); // devuelve el nombre del archivo con su extension
+        
+            $query = "UPDATE peliculas SET titulo = ?, genero = ?, pais = ?, anyo = ? , cartel = ?  WHERE id = ?";
             $stmt = $this->pdo->prepare($query);
-            $stmt->execute([$titulo, $genero, $pais, $anyo, $idPelicula]);
+            $stmt->execute([$titulo, $genero, $pais, $anyo, $cartel, $idPelicula]);
 
             return true;
         } catch (PDOException $e) {

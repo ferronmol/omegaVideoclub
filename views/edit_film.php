@@ -40,19 +40,21 @@ if (isset($_GET['exito_modificacion']) && $_GET['exito_modificacion'] == 1) {
         <div class="panel">
             <h2 class="title">Editar Pelicula </h2>
             <?php
-                if (isset($exito_modificacion)) : ?>
-                    <div class="exito" role="alert">
-                        <?php echo $exito_modificacion; ?>
-                    </div>
-                <?php endif; ?>
+            if (isset($exito_modificacion)) : ?>
+                <div class="exito" role="alert">
+                    <?php echo $exito_modificacion; ?>
+                </div>
+            <?php endif; ?>
             <div class="global-container">
-                
+
                 <div class="peliculas-container">
                     <?php
                     $peliculasInfo = $videoclubController->actualizarPelicula($idPelicula);
                     foreach ($peliculasInfo as $pelicula) : ?>
                         <div class="pelicula">
-                            <img src="data:image/jpeg;base64,<?php echo $pelicula['pelicula_cartel']; ?>" alt="Cartel de la película">
+                            <div class="img-container">
+                                <img class="img-peli" src="<?php echo $pelicula['pelicula_cartel']; ?>" alt="Cartel de la película">
+                            </div>
                             <div class="detalle-pelicula">
                                 <h3><?php echo $pelicula['pelicula_titulo']; ?></h3>
                                 <p>Género: <?php echo $pelicula['pelicula_genero']; ?></p>
@@ -64,7 +66,7 @@ if (isset($_GET['exito_modificacion']) && $_GET['exito_modificacion'] == 1) {
                                         <li>
                                             <strong>Nombre:</strong> <?php echo $actor['actor_nombre']; ?><br>
                                             <strong>Apellidos:</strong> <?php echo $actor['actor_apellidos']; ?><br>
-                                            <img src="data:image/jpeg;base64,<?php echo $actor['actor_fotografia']; ?>" alt="Foto del actor">
+                                            <img src="<?php echo $actor['actor_fotografia']; ?>" alt="Foto del actor">
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>
@@ -81,8 +83,8 @@ if (isset($_GET['exito_modificacion']) && $_GET['exito_modificacion'] == 1) {
 
                 </div>
                 <div class="form-container">
-                    <!-- Formulario para modificar la película -->
-                    <form class="form" action="../controllers/VideoclubController.php?action=guardarModificacionPelicula&idPelicula=<?php echo $pelicula['pelicula_id']; ?>" method="post">
+                    <!--------------------- Formulario para modificar la película ----------------------------->
+                    <form class="form" enctype="multipart/form-data" action="../controllers/VideoclubController.php?action=guardarModificacionPelicula&idPelicula=<?php echo $pelicula['pelicula_id']; ?>" method="post">
                         <label class="label" for="titulo">Nuevo Título:</label>
                         <input class="form-input" type="text" id="titulo" name="titulo" value="<?php echo $pelicula['pelicula_titulo']; ?>"><br>
 
@@ -94,6 +96,9 @@ if (isset($_GET['exito_modificacion']) && $_GET['exito_modificacion'] == 1) {
 
                         <label for="anyo">Nuevo Año:</label>
                         <input class="form-input" type="text" id="anyo" name="anyo" value="<?php echo $pelicula['pelicula_anyo']; ?>"><br>
+
+                        <label for="cartel">Cartel de la película:</label>
+                        <input class="form-input" type="file" name="cartel" id="cartel">
 
                         <button type="submit" class="login-btn">Guardar Cambios</button>
                     </form>

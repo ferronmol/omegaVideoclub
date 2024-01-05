@@ -1,5 +1,6 @@
 <?php
 require_once '../models/UserModel.php';
+require_once 'LogController.php';
 //si no existe la sesion
 if (session_status() == PHP_SESSION_NONE) {
     //la creo
@@ -28,6 +29,11 @@ class LoginController
             var_dump($_SESSION['usuario']);
 
             // Credenciales correctas, si es usuario normal redirigir a la zona privada
+            //lo guardo en e log como acceso a la zona privada , creo instancia de logController
+            $logController = new LogController();
+            //llamo al metodo logAccess para escribir en el log
+            $logController->logAccess($username, $usuario->getRol());
+
             if ($_SESSION['usuario']->getRol() == 0) {
                 header('Location: ../views/zonaprivada.php');
                 exit;

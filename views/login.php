@@ -1,5 +1,6 @@
 <?php
 require_once '../controllers/LoginController.php';
+require_once '../models/UserModel.php';
 // Verificar si hay un mensaje de éxito
 if (isset($_GET['success'])) {
     $successMessage = urldecode($_GET['success']);

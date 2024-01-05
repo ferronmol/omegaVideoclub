@@ -195,9 +195,4 @@ class UserModel
     }
     
 }
-function micargador($class)
-{
-    include '../models/' . $class . '.php';
-}
 
-spl_autoload_register('micargador');

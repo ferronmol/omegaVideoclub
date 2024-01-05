@@ -84,7 +84,7 @@ class VideoclubController
                     'pelicula_genero' => $pelicula['pelicula_genero'],
                     'pelicula_pais' => $pelicula['pelicula_pais'],
                     'pelicula_anyo' => $pelicula['pelicula_anyo'],
-                    'pelicula_cartel' => base64_encode($pelicula['pelicula_cartel']),
+                    'pelicula_cartel' => '../views/images/peliculas/' . $pelicula['pelicula_cartel'],
                     'actores' => []
                 ];
             }
@@ -93,7 +93,7 @@ class VideoclubController
                 'actor_id' => $pelicula['actor_id'],
                 'actor_nombre' => $pelicula['actor_nombre'],
                 'actor_apellidos' => $pelicula['actor_apellidos'],
-                'actor_fotografia' => base64_encode($pelicula['actor_fotografia'])
+                'actor_fotografia' => $pelicula['actor_fotografia']
             ];
         }
 
@@ -117,7 +117,7 @@ class VideoclubController
                     'pelicula_genero' => $pelicula['pelicula_genero'],
                     'pelicula_pais' => $pelicula['pelicula_pais'],
                     'pelicula_anyo' => $pelicula['pelicula_anyo'],
-                    'pelicula_cartel' => base64_encode($pelicula['pelicula_cartel']),
+                    'pelicula_cartel' => $pelicula['pelicula_cartel'],
                     'actores' => []
                 ];
             }
@@ -126,7 +126,7 @@ class VideoclubController
                 'actor_id' => $pelicula['actor_id'],
                 'actor_nombre' => $pelicula['actor_nombre'],
                 'actor_apellidos' => $pelicula['actor_apellidos'],
-                'actor_fotografia' => base64_encode($pelicula['actor_fotografia'])
+                'actor_fotografia' => $pelicula['actor_fotografia']
             ];
         }
 
@@ -137,7 +137,6 @@ class VideoclubController
 
 public function guardarModificacionPelicula($idPelicula)
 {
-    echo 'esta es la funcion guardarModificacionPelicula';
     // Verificar si el usuario tiene permisos para modificar
     if ($_SESSION['usuario']->getRol() == 1) {
         // Obtener los datos del formulario filtrando los datos recibidos
@@ -145,9 +144,20 @@ public function guardarModificacionPelicula($idPelicula)
         $genero = $_POST['genero'];
         $pais = $_POST['pais'];
         $anyo = $_POST['anyo'];
+        $directorioCarteles = '../views/images/peliculas/';
+        if (isset($_FILES['cartel']) && $_FILES['cartel']['error'] == UPLOAD_ERR_OK) {
+            $rutaPelicula = $directorioCarteles . $_FILES['cartel']['name'];
+
+            move_uploaded_file($_FILES['cartel']['tmp_name'], $rutaPelicula);
+            echo 'hay cartel';
+        
+        } else {
+            $cartel = null;
+            echo 'no hay cartel';
+        }
 
         // Lógica para guardar los datos de la película
-        $exito = $this->videoclubModel->setModificacionPelicula($titulo, $genero, $pais, $anyo, $idPelicula);
+        $exito = $this->videoclubModel->setModificacionPelicula($titulo, $genero, $pais, $anyo, $idPelicula, $rutaPelicula);
 
         if ($exito) {
             //muestro un mensaje de exito con la modificacion
