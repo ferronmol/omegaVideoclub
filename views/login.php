@@ -20,7 +20,7 @@ if (isset($_GET['error'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entra en nuestro videoclub. Un mundo "de película" te espera.</title>
-    <link rel="stylesheet" href="../views/css/styleindex.css">
+    <link rel="stylesheet" href="../views/css/styles.css">
     <link rel="shortcut icon" href="../views/images/estrella.png" type="image/x-icon">
 </head>
 
@@ -44,7 +44,7 @@ if (isset($_GET['error'])) {
                 <button type="submit" name="login_user" class="login-btn">Iniciar sesión</button>
 
             </div>
-            <p>Si no estás registrado <a class="link" href="register.php">Regístrate</a></p>
+            <p class="text-white">Si no estás registrado <a class="link" href="register.php">Regístrate</a></p>
             <a href="../index.php" class="link">Volver a la página principal</a>
         </form>
     </div>

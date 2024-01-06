@@ -16,8 +16,8 @@ class DB
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         } catch (PDOException $ex) {
-            echo 'Error de conexión: ' . $ex->getMessage();
-            echo '<pre>' . print_r($ex->getTrace(), true) . '</pre>';
+            echo 'La conexion aun no esta establecida';
+            
         }
     }
 

@@ -93,7 +93,7 @@ class VideoclubController
                 'actor_id' => $pelicula['actor_id'],
                 'actor_nombre' => $pelicula['actor_nombre'],
                 'actor_apellidos' => $pelicula['actor_apellidos'],
-                'actor_fotografia' => $pelicula['actor_fotografia']
+                'actor_fotografia' => '../views/images/actores/' . $pelicula['actor_fotografia']
             ];
         }
 
@@ -117,7 +117,7 @@ class VideoclubController
                     'pelicula_genero' => $pelicula['pelicula_genero'],
                     'pelicula_pais' => $pelicula['pelicula_pais'],
                     'pelicula_anyo' => $pelicula['pelicula_anyo'],
-                    'pelicula_cartel' => $pelicula['pelicula_cartel'],
+                    'pelicula_cartel' => '../views/images/peliculas/' . $pelicula['pelicula_cartel'],
                     'actores' => []
                 ];
             }
@@ -126,7 +126,7 @@ class VideoclubController
                 'actor_id' => $pelicula['actor_id'],
                 'actor_nombre' => $pelicula['actor_nombre'],
                 'actor_apellidos' => $pelicula['actor_apellidos'],
-                'actor_fotografia' => $pelicula['actor_fotografia']
+                'actor_fotografia' =>'../views/images/actores/' . $pelicula['actor_fotografia']
             ];
         }
 

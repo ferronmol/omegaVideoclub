@@ -15,7 +15,7 @@ $_SESSION['usuario'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VideoclubOmega</title>
-    <link rel="stylesheet" href="./css/styleindex.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <link rel="shortcut icon" href="./images/estrella.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
@@ -85,7 +85,9 @@ $_SESSION['usuario'];
                                     <li>
                                         <strong>Nombre:</strong> <?php echo $actor['actor_nombre']; ?><br>
                                         <strong>Apellidos:</strong> <?php echo $actor['actor_apellidos']; ?><br>
-                                        <img src="data:image/jpeg;base64,<?php echo $actor['actor_fotografia']; ?>" alt="Foto del actor">
+                                        <div class="img-container">
+                                            <img class="img-actor" src="<?php echo $actor['actor_fotografia']; ?>" alt="Foto del actor">
+                                        </div>
                                     </li>
                                 <?php endforeach; ?>
                             </ul>

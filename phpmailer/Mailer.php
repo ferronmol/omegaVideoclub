@@ -1,7 +1,6 @@
 <?php
-require 'vendor/autoload.php'; // Asegúrate de incluir el archivo de la librería PHPMailer
-require '../controllers/AsisFormController.php';
-
+require '../config/config.php';
+require_once 'PHPMailer.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -11,20 +10,22 @@ class Mailer {
         $mail = new PHPMailer(true);
 
         try {
-            // Configuración del servidor de correo
+            // Configuración del servidor de correo que utilizará PHPMailer cogiendo los datos de config.php
             $mail->isSMTP();
-            $mail->Host = 'tu_servidor_smtp.com';
+            $mail->Host = $GLOBALS['smtpHost'];
             $mail->SMTPAuth = true;
-            $mail->Username = 'tu_usuario_smtp';
-            $mail->Password = 'tu_contraseña_smtp';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port = 587;
+            $mail->Username = $GLOBALS['smtpUsername'];
+            $mail->Password = $GLOBALS['smtpPassword'];
+            $mail->SMTPSecure = $GLOBALS['smtpEncryption'];
+            $mail->Port = $GLOBALS['smtpPort'];
 
             // Configuración del correo electrónico
             $mail->setFrom($formData->email, $formData->name);
-            $mail->addAddress('destinatario@example.com');
+            $mail->addAddress($GLOBALS['adminEmail']);  // Coloca la dirección del destinatario aquí
             $mail->Subject = 'Consulta del Formulario';
             $mail->Body = $formData->message;
+
+            //$mail->SMTPDebug = 2; // Activa la salida de depuración detallada(si no funciona el envio)
 
             // Enviar el correo electrónico
             $mail->send();

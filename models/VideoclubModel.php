@@ -1,5 +1,5 @@
 <?php
-
+/*********************CREO LAS CLASES********************************************/
 class PDOModel
 {
     private $bd;
@@ -83,10 +83,15 @@ class Actor
     {
         return $this->fotografia;
     }
+    public function getFotografia()
+    {
+        return $this->fotografia;
+    }
 }
 
 class VideoclubModel extends PDOModel
 {
+    //funcion para listar las peliculas SIN USAR
     public function getPeliculas()
     {
         $peliculas = [];
@@ -101,49 +106,9 @@ class VideoclubModel extends PDOModel
             echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
         }
         return $peliculas;
-        //depuro
-        //var_dump($peliculas);
-
+       
     }
-
-
-    public function agregarPelicula(Pelicula $pelicula)
-    {
-        try {
-            $query = "INSERT INTO peliculas (titulo, genero, pais, anyo, cartel) VALUES (?, ?, ?, ?, ?)";
-            $stmt = $this->pdo->prepare($query);
-            $stmt->execute([
-                $pelicula->getTitulo(),
-                $pelicula->getGenero(),
-                $pelicula->getPais(),
-                $pelicula->get_anyo(),
-                $pelicula->getCartel()
-            ]);
-
-            return true;
-        } catch (PDOException $e) {
-            // Puedes manejar el error de alguna manera, como mostrar un mensaje al usuario
-            echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
-            return false;
-        }
-    }
-
-    public function borrarPelicula($idPelicula)
-    {
-        try {
-            $query = "DELETE FROM peliculas WHERE id = ?";
-            $stmt = $this->pdo->prepare($query);
-            $stmt->execute([$idPelicula]);
-
-            return true;
-        } catch (PDOException $e) {
-            // Puedes manejar el error de alguna manera, como mostrar un mensaje al usuario
-            echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
-            return false;
-        }
-    }
-    /*************************** */
-    //creo esat funcion como paso previo para listar las peliculas complets con su reparto
+    //funcion para listar las peliculas con su reparto SIN USAR
     public function getTitulosPeliculas()
     {
         $titulosPeliculas = [];
@@ -158,9 +123,8 @@ class VideoclubModel extends PDOModel
             echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
         }
         return $titulosPeliculas;
-        //depuro
-        //var_dump($titulosPeliculas);
     }
+    //************funcion  para listar las peliculas con su reparto******************************
     public function getPeliculasDetalladas()
     {
         $peliculasDetalladas = [];
@@ -239,6 +203,42 @@ class VideoclubModel extends PDOModel
             $query = "UPDATE peliculas SET titulo = ?, genero = ?, pais = ?, anyo = ? , cartel = ?  WHERE id = ?";
             $stmt = $this->pdo->prepare($query);
             $stmt->execute([$titulo, $genero, $pais, $anyo, $cartel, $idPelicula]);
+
+            return true;
+        } catch (PDOException $e) {
+            // Puedes manejar el error de alguna manera, como mostrar un mensaje al usuario
+            echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
+            return false;
+        }
+    }
+    
+    public function agregarPelicula(Pelicula $pelicula)
+    {
+        try {
+            $query = "INSERT INTO peliculas (titulo, genero, pais, anyo, cartel) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([
+                $pelicula->getTitulo(),
+                $pelicula->getGenero(),
+                $pelicula->getPais(),
+                $pelicula->get_anyo(),
+                $pelicula->getCartel()
+            ]);
+
+            return true;
+        } catch (PDOException $e) {
+            // Puedes manejar el error de alguna manera, como mostrar un mensaje al usuario
+            echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
+            return false;
+        }
+    }
+
+    public function borrarPelicula($idPelicula)
+    {
+        try {
+            $query = "DELETE FROM peliculas WHERE id = ?";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute([$idPelicula]);
 
             return true;
         } catch (PDOException $e) {

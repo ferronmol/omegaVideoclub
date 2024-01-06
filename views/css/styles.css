@@ -3,17 +3,17 @@
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("./Montserrat/Montserrat-Regular.ttf") format("truetype");
+  src: url("../fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
   font-weight: 400;
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("./Montserrat/Montserrat-Bold.ttf") format("truetype");
+  src: url("../fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
   font-weight: bold;
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("./Montserrat/Montserrat-Black.ttf") format("truetype");
+  src: url("../fonts/Montserrat/Montserrat-Black.ttf") format("truetype");
   font-weight: 900;
 }
 html, body {
@@ -172,7 +172,7 @@ body {
 
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .nav {
     --hamburguer: scale(0); /* si mayor a 768px no se ve el icono hamburguesa */
     --menu: translate(0); /* si mayor a 768px no se ve el menu */
@@ -205,7 +205,15 @@ body {
   .char--logo {
     font-size: 3rem;
   }
+  
 }
+@media screen and (max-width: 1000px) {
+  .form {
+    width: 200px;
+    /* Otros ajustes de estilo para pantallas pequeñas */
+  }
+}
+
 @media screen and (min-width: 1200px) {
   .nav__links {
     gap: 3em;
@@ -249,10 +257,26 @@ body {
 .visorregister{
   background-image: url(../images/films4.jpg);
 }
+.visorasistencia{
+  background-image: url(../images/films.jpg);
+
+}
 .header h2{
   text-align: center;
   background-color: salmon;
   margin: 0;
+}
+/* ********************ESTILOS DE FORM******************************* */
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ccc;
+  border-radius: 10px;
+  margin-left: 0.5rem;
 }
 .form {
   border: 1px solid #ccc;
@@ -261,11 +285,24 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 400px;
+  max-width:  500px;
   height: 400px;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 }
+.form-asis{
+  width: 50%;
+  margin: 2rem;
+}
+.form-input{
+  border: none;
+  border-radius: 4px;
+  margin: 5px;
+}
+.form-input:focus{
+  outline: none;
+}
+/* **********************ESTILOS DE LOGIN******************************* */
 .login-btn {
   background-color: #4CAF50; 
   color: #fff; 
@@ -297,14 +334,7 @@ body {
   color: rgb(77, 25, 3)  ;  
   font-weight: 900;
 }
-.form-input{
-  border: none;
-  border-radius: 4px;
-  margin: 5px;
-}
-.form-input:focus{
-  outline: none;
-}
+
 .link{
   color: white;
   text-decoration: none;
@@ -318,6 +348,14 @@ body {
 .link:hover{
   background-color: black;
   color: white;
+}
+.text-white{
+  color: white;
+  font-size: .8rem;
+  margin: .3rem;
+  padding: .3rem;
+  text-align: center;
+
 }
 /********ESTILOS DE LISTAR LAS PELICULAS Y SU REPARTO***********/
 .panel{
@@ -344,28 +382,29 @@ body {
   background-image: white;
   flex-wrap: wrap;
   justify-content: center;
-  max-height: 700px;
+  max-height: 600px;
   overflow-y: auto;
+ 
 }
 
 .pelicula {
   background: #ccc;
   border: 2px solid black;
-  margin: 10px;
-  padding: 10px;
-  width: 300px;
+  margin: 6px;
+  padding: 6px;
+  width: 400px;
   box-sizing: border-box;
   border-radius: 10px;
 }
 
 .detalle-pelicula {
-  margin-top: .5rem;
+  margin-top: .3rem;
 }
 
 .detalle-pelicula img {
   max-width: 100%;
   height: auto;
-  margin-top: .5rem;
+  margin-top: .3rem;
 }
 .pagination {
   display: flex;
@@ -392,28 +431,25 @@ body {
   padding: .5rem;
   border: 1px solid  #4CAF50;
 }
-.form-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #ccc;
-  border-radius: 10px;
-  margin-top: 0.3rem;
-}
+
 .borrar-button-container {
   text-align: center;
-  margin-top: 10px; /* Ajusta el margen según sea necesario */
+  margin-top: 10px; 
 }
 .btn-container {
   display: flex;
   justify-content: center;
-  margin-top:.5rem; /* Ajusta el margen según sea necesario */
+  margin-top:.5rem; 
 }
 .img-peli{
   width: 100%;
   height: 100%;
   object-fit: contain;
   border-radius: 5px;
-
+}
+.img-actor{
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+  border-radius: 5px;
 }

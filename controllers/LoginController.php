@@ -14,9 +14,17 @@ class LoginController
     {
         $this->userModel = new UserModel(new DB());
     }
+    public function index()
+    {
+        // Muestro siempre el HTML del login con el formulario
+        require_once '../views/login.php';
+    }
 
     public function login($username, $password)
-    {
+    { // Creamos la instancia de UserModel cuando el usuario hace login
+        //  if (!$this->userModel) {
+        //      $this->userModel = new UserModel(new DB());
+        // }
         //obtener el usuario de la base de datos
         $usuario = $this->userModel->getUsuario($username);
         // Validar credenciales
@@ -67,3 +75,4 @@ if (isset($_POST['login_user'])) {
     //llamo al metodo login del controlador
     $loginController->login($username, $password);
 }
+

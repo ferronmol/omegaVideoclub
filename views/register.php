@@ -15,7 +15,7 @@ if (isset($_GET['error'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Registro</title>
-    <link rel="stylesheet" href="../views/css/styleindex.css">
+    <link rel="stylesheet" href="../views/css/styles.css">
     <link rel="shortcut icon" href="../views/images/estrella.png" type="image/x-icon">
 </head>
 

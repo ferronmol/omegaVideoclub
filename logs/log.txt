@@ -32,3 +32,31 @@
 [2024-01-05 18:22:06] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
 [2024-01-05 18:47:58] - Usuario: admin - Rol: 1 - Acción: Cierre de sesión
 [2024-01-05 18:48:05] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-05 18:52:44] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-06 11:26:37] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-06 11:26:45] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-06 11:26:50] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-06 11:51:42] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-06 11:51:48] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-06 11:52:49] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-06 11:53:26] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-06 11:53:31] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-06 11:55:14] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-06 11:55:26] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-06 11:56:42] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-06 12:02:35] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-06 12:04:21] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-06 12:04:35] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-06 13:18:03] - Usuario: admin - Rol: 1 - Acción: Cierre de sesión
+[2024-01-06 13:18:11] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-06 15:27:00] - Usuario: admin - Rol: 1 - Acción: Cierre de sesión
+[2024-01-06 15:30:02] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-06 15:45:21] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-06] - Usuario:  - Rol:  - Acción: Envio de correo 
+        de juan ferron con mail proyectosferron@gmail.com, telefono 649123705 , en fecha 2024-01-06 y con este mensaje: ya falta poco poco 
+[2024-01-06] - Usuario:  - Rol:  - Acción: Envio de correo 
+        de juan ferron con mail proyectosferron@gmail.com, telefono 649123705 , en fecha 2024-01-06 y con este mensaje: ya falta poco poco 
+[2024-01-06] - Usuario: Anónimo - Rol: Anónimo - Acción: Envio de correo 
+        de juan ferron mail proyectosferron@gmail.com, tel 649123705 , en fecha 2024-01-06 y mensaje: ya falta poco poco 
+[2024-01-06] - Usuario: Anónimo - Rol: Anónimo - Acción: Envio de correo 
+        de juan ferron mail proyectosferron@gmail.com, tel 649123705 , en fecha 2024-01-06 y mensaje: ya falta poco poco 
