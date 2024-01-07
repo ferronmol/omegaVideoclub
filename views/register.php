@@ -36,11 +36,11 @@ if (isset($_GET['error'])) {
             ?>
             <div class="input-group">
                 <label class="label" for="username">Nombre de Usuario</label>
-                <input type="text" required name="username" class="form-input" autocomplete="username">
+                <input type="text" id="username" required name="username" class="form-input" autocomplete="username">
             </div>
             <div class="input-group">
                 <label class="label" for="password">Contraseña</label>
-                <input type="password" required name="password" class="form-input" autocomplete="current-password">
+                <input type="password" id="password" required name="password" class="form-input" autocomplete="current-password">
             </div>
             <div class="input-group">
                 <button type="submit" name="reg_user" class="login-btn">Registrarse</button>

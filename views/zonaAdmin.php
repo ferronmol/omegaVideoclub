@@ -9,7 +9,6 @@ if (isset($_GET['exito_borrado']) && $_GET['exito_borrado'] == 1) {
     $_SESSION['exito_borrado'] = '¡La película se borró éxito!';
     //lo meto en una variable
     $exito_borrado = $_SESSION['exito_borrado'];
-    
 }
 ?>
 
@@ -28,7 +27,7 @@ if (isset($_GET['exito_borrado']) && $_GET['exito_borrado'] == 1) {
 
 <body>
     <header class="header_main header_short">
-        <nav class="nav container" id="mininav">
+        <nav class="nav mininav" id="mininav">
             <h2 class="nav__logo">VideoClub <span class="char char--logo">O</span>mega</h2>
 
             <ul class="nav__links">
@@ -50,11 +49,11 @@ if (isset($_GET['exito_borrado']) && $_GET['exito_borrado'] == 1) {
 
             <!--Tiene que ser un boton que haga referencia al id puesto en el nav-->
             <a href="#mininav" class="nav__hamburguer">
-                <img src="./images/menu.svg" class="nav__icon">
+                <img src="./images/menu.svg" class="nav__icon" alt="menu icon">
             </a>
 
             <a href="" class="nav__close">
-                <img src="./images/close.svg" class="nav__icon">
+                <img src="./images/close.svg" class="nav__icon" alt="menu icon">
             </a>
         </nav>
     </header>
@@ -73,13 +72,13 @@ if (isset($_GET['exito_borrado']) && $_GET['exito_borrado'] == 1) {
         <div class="panel">
             <!--muestro mi exito de boorado si existe-->
             <?php
-                if (isset($exito_borrado)) : ?>
-                    <div class="exito" role="alert">
-                        <?php echo $exito_borrado; ?>
-                    </div>
-                <?php endif; ?>
+            if (isset($exito_borrado)) : ?>
+                <div class="exito" role="alert">
+                    <?php echo $exito_borrado; ?>
+                </div>
+            <?php endif; ?>
             <h2 class="title">Listado de Películas</h2>
-            <!------boton para insertar peliculas--------->
+            <!-- Botón para insertar una nueva película -->
             <div class="button-container">
                 <a href="../controllers/VideoclubController.php?action=crearPelicula" class="link">Insertar Película</a>
             </div>
@@ -121,7 +120,8 @@ if (isset($_GET['exito_borrado']) && $_GET['exito_borrado'] == 1) {
                     </div>
                 <?php endforeach; ?>
             </div>
+            <a href="#mininav" class="link">Volver arriba</a>
         </div>
+    </div>
 </body>
-
 </html>

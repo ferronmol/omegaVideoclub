@@ -4,12 +4,12 @@ require_once '../models/UserModel.php';
 // Verificar si hay un mensaje de éxito
 if (isset($_GET['success'])) {
     $successMessage = urldecode($_GET['success']);
-    echo '<p style="color: green;">' . htmlspecialchars($successMessage) . '</p>';
+    echo '<p class="exito">' . htmlspecialchars($successMessage) . '</p>';
 }
 // Verificar si hay un mensaje de error
 if (isset($_GET['error'])) {
     $errorMessage = urldecode($_GET['error']);
-    echo '<p style="color: red;">' . htmlspecialchars($errorMessage) . '</p>';
+    echo '<p class = "error">' . htmlspecialchars($errorMessage) . '</p>';
 }
 ?>
 
@@ -34,11 +34,11 @@ if (isset($_GET['error'])) {
         <form class="form" action="login.php" method="post">
             <div class="input-group">
                 <label for="username">Nombre de Usuario</label>
-                <input type="text" required name="username">
+                <input type="text" id="username" required name="username" placeholder="mi usuario">
             </div>
             <div class="input-group">
                 <label for="password">Contraseña</label>
-                <input type="password" required name="password">
+                <input type="password" id="password" required name="password" placeholder="minimo 4 caracteres">
             </div>
             <div class="">
                 <button type="submit" name="login_user" class="login-btn">Iniciar sesión</button>

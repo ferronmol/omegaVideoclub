@@ -16,7 +16,8 @@
   src: url("../fonts/Montserrat/Montserrat-Black.ttf") format("truetype");
   font-weight: 900;
 }
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -27,14 +28,19 @@ body {
   font-family: "Montserrat", sans-serif;
   width: 100%;
 }
-
+strong {
+  font-size: 0.9rem;
+}
+p,
+h4 {
+  margin: 0.5rem;
+}
 .container {
   margin: 0 auto;
   width: 90%;
   max-width: 1400px;
   overflow: hidden;
 }
-
 
 .nav {
   --submenu: scale(
@@ -62,13 +68,19 @@ body {
     display: none;
   }
 }
+.mininav {
+  padding: 0;
+  margin: 0;
+  height: 100px;
+}
 
 .nav__logo {
   font-size: 2rem;
   z-index: 1;
   font-weight: 900;
-  margin:0;
+  margin: 0;
   padding: 0;
+  margin-left: 2rem;
 }
 /* pongo los dos iconos en el mismo sitio   */
 .nav__hamburguer,
@@ -99,8 +111,9 @@ body {
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0;
+  right: 1rem;
   padding: 0;
+  margin-right: 2rem;
 
   display: grid;
   align-content: center;
@@ -136,7 +149,8 @@ body {
 .char--logo {
   font-size: 3rem;
 }
-.error , .error-message {
+.error,
+.error-message {
   width: 92%;
   margin: 0px auto;
   padding: 10px;
@@ -149,10 +163,11 @@ body {
   justify-content: center;
   align-items: center;
 }
-.exito {
+.exito,
+success-message {
   width: 30%;
   margin: 0px auto;
-  padding: .5rem;
+  padding: 0.5rem;
   border: 1px solid #3c763d;
   color: #3c763d;
   background: #dff0d8;
@@ -161,15 +176,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: .7rem;
-
+  font-size: 0.7rem;
 }
 .text {
   text-align: center;
-  font-size: .7rem;
+  font-size: 0.7rem;
   padding: 0;
   margin: 0;
-
 }
 
 @media screen and (min-width: 768px) {
@@ -197,7 +210,7 @@ body {
 
   .nav__link {
     font-size: 1rem;
-    letter-spacing: none;
+    letter-spacing: 1px;
   }
   .char {
     font-size: 2rem;
@@ -205,7 +218,6 @@ body {
   .char--logo {
     font-size: 3rem;
   }
-  
 }
 @media screen and (max-width: 1000px) {
   .form {
@@ -243,25 +255,24 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-size: cover ;
+  background-size: cover;
   position: relative;
   display: flex;
   align-items: center;
 }
-.visorindex{
+.visorindex {
   background-image: url(../images/films2.jpg);
 }
-.visorlogin{
+.visorlogin {
   background-image: url(../images/films3.jpg);
 }
-.visorregister{
+.visorregister {
   background-image: url(../images/films4.jpg);
 }
-.visorasistencia{
+.visorasistencia {
   background-image: url(../images/films.jpg);
-
 }
-.header h2{
+.header h2 {
   text-align: center;
   background-color: salmon;
   margin: 0;
@@ -285,45 +296,45 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width:  500px;
+  max-width: 500px;
   height: 400px;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 }
-.form-asis{
+.form-asis {
   width: 50%;
   margin: 2rem;
 }
-.form-input{
+.form-input {
   border: none;
   border-radius: 4px;
   margin: 5px;
 }
-.form-input:focus{
+.form-input:focus {
   outline: none;
 }
 /* **********************ESTILOS DE LOGIN******************************* */
 .login-btn {
-  background-color: #4CAF50; 
-  color: #fff; 
-  padding: 10px 20px; 
-  font-size: 16px; 
-  border: none; 
-  border-radius: 5px; 
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease; 
-  margin: .5rem;
+  transition: background-color 0.3s ease;
+  margin: 0.5rem;
 }
 .login-btn:hover {
-  background-color: #3e8e41; 
+  background-color: #3e8e41;
 }
-.input-group{
+.input-group {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin: .5rem;
+  margin: 0.5rem;
   color: white;
   font-weight: bold;
   font-size: large;
@@ -331,34 +342,33 @@ body {
 .consulta {
   display: flex;
   flex-direction: column;
-  color: rgb(77, 25, 3)  ;  
+  color: rgb(77, 25, 3);
   font-weight: 900;
 }
 
-.link{
+.link {
   color: white;
   text-decoration: none;
   font-size: 1rem;
-  margin: .3rem;
-  padding: .3rem;
+  margin: 0.3rem;
+  padding: 0.3rem;
   background-color: rgb(24, 149, 165);
   border-radius: 5px;
   text-align: center;
 }
-.link:hover{
+.link:hover {
   background-color: black;
   color: white;
 }
-.text-white{
+.text-white {
   color: white;
-  font-size: .8rem;
-  margin: .3rem;
-  padding: .3rem;
+  font-size: 0.8rem;
+  margin: 0.3rem;
+  padding: 0.3rem;
   text-align: center;
-
 }
 /********ESTILOS DE LISTAR LAS PELICULAS Y SU REPARTO***********/
-.panel{
+.panel {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -368,23 +378,23 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   border: 2px solid red;
-  margin-top: .3rem;
+  margin-top: 0.3rem;
 }
-.title{
+.title {
   color: white;
   font-size: 2rem;
   font-weight: bold;
-  margin: .2rem auto;
+  margin: 0.2rem auto;
 }
 .peliculas-container {
   display: flex;
   flex-direction: row;
-  background-image: white;
+  background: white;
   flex-wrap: wrap;
   justify-content: center;
-  max-height: 600px;
+  height: 400px;
   overflow-y: auto;
- 
+  width: 90%;
 }
 
 .pelicula {
@@ -392,19 +402,21 @@ body {
   border: 2px solid black;
   margin: 6px;
   padding: 6px;
-  width: 400px;
+  width: 350px;
+  height: 800px;
   box-sizing: border-box;
   border-radius: 10px;
+  overflow-y: auto;
 }
 
 .detalle-pelicula {
-  margin-top: .3rem;
+  margin-top: 0.3rem;
 }
 
 .detalle-pelicula img {
-  max-width: 100%;
+  max-width: 95%;
   height: auto;
-  margin-top: .3rem;
+  margin-top: 0.3rem;
 }
 .pagination {
   display: flex;
@@ -418,7 +430,7 @@ body {
   border: 1px solid #ccc;
   cursor: pointer;
   text-decoration: none;
-  color: #333;
+  color: #292929;
   border-radius: 5px;
 }
 .global-container {
@@ -426,30 +438,32 @@ body {
   width: 90%;
   display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
-  padding: .5rem;
-  border: 1px solid  #4CAF50;
+  padding: 0.5rem;
+  border: 1px solid #4caf50;
 }
 
 .button-container {
   text-align: center;
-  margin: .5rem; 
+  margin: 0.5rem;
 }
 .btn-container {
   display: flex;
   justify-content: center;
-  margin-top:.5rem; 
+  margin-top: 0.5rem;
 }
-.img-peli{
+.img-peli {
   width: 100%;
   height: 100%;
   object-fit: contain;
   border-radius: 5px;
+  max-height: 200px;
 }
-.img-actor{
+.img-actor {
   width: 50%;
   height: 50%;
   object-fit: contain;
   border-radius: 5px;
+  max-height: 120px;
 }

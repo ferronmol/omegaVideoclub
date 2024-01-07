@@ -38,13 +38,12 @@ if (isset($_GET['exito_creacion']) && $_GET['exito_creacion'] == 1) {
                         <?php echo $exito_creacion; ?>
                     </div>
                 <?php endif; ?>
-            <div class="global-container">
-              
+            <div class="global-container">             
                 <div class="form-container">
-                    <!--------------------- Formulario para crear la película ----------------------------->
+                    <!-- Formulario para crear la película -->
                     <form class="form" enctype="multipart/form-data" action="../controllers/VideoclubController.php?action=guardarCreacionPelicula" method="post">
                         <label class="label" for="titulo">Nuevo Título:</label>
-                        <input class="form-input" type="text" id="titulo" name="titulo"><br>
+                        <input class="form-input" type="text" id="titulo" required name="titulo"><br>
 
                         <label for="genero">Nuevo Género:</label>
                         <input class="form-input" type="text" id="genero" name="genero"><br>

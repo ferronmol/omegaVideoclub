@@ -39,12 +39,12 @@ if (isset($_GET['error'])) {
                 </div>
                 <div class="consulta">
                     <label for="email" class="label">Email</label>
-                    <input required type="text" id="email" name="email" class="form-input">
+                    <input required  type="text" id="email" name="email" class="form-input">
 
                 </div>
                 <div class="consulta">
                     <label for="tele" class="label">Teléfono</label>
-                    <input required type="tel" id="tele" name="tele" class="form-input">
+                    <input required  type="tel" id="tele" name="tele" class="form-input">
                 </div>
                 <div class="consulta">
                     <label for="date" class="label">Fecha</label>
@@ -58,7 +58,7 @@ if (isset($_GET['error'])) {
             </form>
         </div>
         <!--boton para volver a la pagina principal -->
-        <a class="link" href="zonaprivada.php" class="link">Volver a la página principal</a>
+        <a class="link" href="zonaprivada.php">Volver a la página principal</a>
     </div>
 </body>
 

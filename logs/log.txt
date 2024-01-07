@@ -83,3 +83,33 @@
 [2024-01-07 11:22:22] - Usuario: admin - Rol: 1 - Acción: Cierre de sesión
 [2024-01-07 11:22:31] - Usuario: pepe - Acción: Acceso fallido a la zona privada
 [2024-01-07 11:27:55] - Usuario: lolo - Rol: 0 - Acción: Acceso fallido a la zona privada
+[2024-01-07 15:49:34] - Usuario: mery - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-07 15:53:40] - Usuario: Anónimo - Rol: Anónimo - Acción: Envio de correo 
+        de mery mail merycd8@gmail.com, tel 649123705 , en fecha 1980-12-04 y mensaje: TENGO UN PROBLEMA CON EL LISTADO DE PELICULAS 
+[2024-01-07 15:54:33] - Usuario: mery - Rol: 0 - Acción: Cierre de sesión
+[2024-01-07 15:54:58] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-07 16:09:14] - Usuario: admin - Rol: 1 - Acción: Cierre de sesión
+[2024-01-07 16:11:32] - Usuario: fede - Rol: 0
+[2024-01-07 16:13:31] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-07 16:31:39] - Usuario: admin - Rol: 1 - Acción: Se ha insertado,creado o modificado
+[2024-01-07 16:32:40] - Usuario: admin - Rol: 1 - Acción: Se ha modificado una pelicula
+[2024-01-07 16:36:26] - Usuario: admin - Rol: 1 - Acción: Modificación de la película con id 25
+[2024-01-07 16:43:20] - Usuario: admin - Rol: 1 - Acción: Cierre de sesión
+[2024-01-07 16:43:27] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-07 17:04:02] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-07 17:04:16] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-07 19:58:59] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-07 20:20:31] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-07 20:20:38] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-07 21:30:33] - Usuario: NextLimit - Rol: 0 - Acción: Acceso fallido a la zona privada
+[2024-01-07 21:31:40] - Usuario: NextLimit - Rol: 0 - Acción: Acceso fallido a la zona privada
+[2024-01-07 21:32:00] - Usuario: NextLimit - Rol: 0 - Acción: Acceso fallido a la zona privada
+[2024-01-07 21:37:47] - Usuario: NextLimit - Rol: 0 - Acción: Acceso fallido a la zona privada
+[2024-01-07 21:37:52] - Usuario: NextLimit - Rol: 0 - Acción: Acceso fallido a la zona privada
+[2024-01-07 21:45:58] - Usuario: NextLimit - Rol: 0 - Acción: Acceso fallido a la zona privada
+[2024-01-07 21:52:43] - Usuario: juan - Rol: 0 - Acción: Acceso fallido a la zona privada
+[2024-01-07 21:52:55] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-07 22:09:08] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-07 22:13:12] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-07 22:18:27] - Usuario: admin - Rol: 1 - Acción: Creación de nueva película  
+[2024-01-07 22:25:06] - Usuario: admin - Rol: 1 - Acción: Borrado de la pelicula 26

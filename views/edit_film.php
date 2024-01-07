@@ -65,7 +65,7 @@ if (isset($_GET['exito_modificacion']) && $_GET['exito_modificacion'] == 1) {
                                             <strong>Nombre:</strong> <?php echo $actor['actor_nombre']; ?><br>
                                             <strong>Apellidos:</strong> <?php echo $actor['actor_apellidos']; ?><br>
                                             <div class="img-container">
-                                            <img src="<?php echo $actor['actor_fotografia']; ?>" alt="Foto del actor">
+                                                <img src="<?php echo $actor['actor_fotografia']; ?>" alt="Foto del actor">
                                             </div>
                                         </li>
                                     <?php endforeach; ?>
@@ -83,7 +83,7 @@ if (isset($_GET['exito_modificacion']) && $_GET['exito_modificacion'] == 1) {
 
                 </div>
                 <div class="form-container">
-                    <!--------------------- Formulario para modificar la película ----------------------------->
+                    <!--formulario para modificar la pelicula-->
                     <form class="form" enctype="multipart/form-data" action="../controllers/VideoclubController.php?action=guardarModificacionPelicula&idPelicula=<?php echo $pelicula['pelicula_id']; ?>" method="post">
                         <label class="label" for="titulo">Nuevo Título:</label>
                         <input class="form-input" type="text" id="titulo" name="titulo" value="<?php echo $pelicula['pelicula_titulo']; ?>"><br>
@@ -103,7 +103,6 @@ if (isset($_GET['exito_modificacion']) && $_GET['exito_modificacion'] == 1) {
                         <button type="submit" class="login-btn">Guardar Cambios</button>
                     </form>
                 </div>
-
             </div>
             <div class="btn-container">
                 <!--enlace para volver a la zona de administracion-->
@@ -114,6 +113,7 @@ if (isset($_GET['exito_modificacion']) && $_GET['exito_modificacion'] == 1) {
                 </form>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

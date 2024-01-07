@@ -1,7 +1,7 @@
 <?php
 require_once '../db/DB.php';
 require_once '../models/UserModel.php';
-
+require_once '../controllers/LogController.php';
 class RegisterController
 {
     private $userModel;
@@ -31,6 +31,11 @@ class RegisterController
 
                 // Verificar el resultado del modelo
                 if ($result) {
+                    //lo guardo en el log en logUserCreation() creando instancia
+                    $logController = new LogController();
+                    $logController->logUserCreation($username, "0");
+
+
                     // Si el resultado es exitoso, redirigir al usuario a la página de inicio de sesión
                     header('Location: ../views/login.php?success=Usuario registrado correctamente');
                     exit;

@@ -71,7 +71,8 @@ class LogController
 
         //escribir en el archivo
         file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
-        echo "Intento de acceso fallido";
+        //mando un mensaje de error al login
+        header('location: ../views/login.php?error=' . urlencode("Usuario o contraseña incorrectos"));
     }
     //funcion para registrar qeu el admin ha borrado, insertado o modificado una pelicula
     public function logAdminAction($username, $rol, $accion)
@@ -81,10 +82,25 @@ class LogController
         // Obtener la fecha y hora actual
         $date = date('Y-m-d H:i:s');
 
-        $logMessage = "[" . $date . "] - Usuario: " . $username . " - Rol: " .$rol . " - Acción: $accion" . PHP_EOL;
-
+        $logMessage = "[" . $date . "] - Usuario: " . $username . " - Rol: " .$rol . " - Acción: " . $accion . PHP_EOL;
+         
         //escribir en el archivo
         file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
         echo "Se ha registrado la acción del administrador";
+    }
+
+    //funcion para registrar la creacion de un usuario
+    public function logUserCreation($username, $rol)
+    {
+        $logFile = '../logs/log.txt';
+
+        // Obtener la fecha y hora actual
+        $date = date('Y-m-d H:i:s');
+
+        $logMessage = "[" . $date . "] - Usuario: " . $username . " - Rol: " .$rol . " - Acción: Se ha registrado un usuario" . PHP_EOL;
+
+        //escribir en el archivo
+        file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
+        echo "Se ha registrado la creación de un usuario";
     }
 }

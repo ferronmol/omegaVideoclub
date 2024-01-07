@@ -37,18 +37,18 @@ $_SESSION['usuario'];
                     <a href="#" class="nav__link"><span class="char">S</span>ervicios</a>
                 </li>
                 <li class="nav__item">
-                    <a href="../views/asistencia.php" class="nav__link"><span class="char">A</span>sistencia</a>
+                    <a href="../views/asistencia.php" class="nav__link"><span class="char">Asistencia</span></a>
                 </li>
 
             </ul>
 
             <!--Tiene que ser un boton que haga referencia al id puesto en el nav-->
             <a href="#mininav" class="nav__hamburguer">
-                <img src="./images/menu.svg" class="nav__icon">
+                <img src="./images/menu.svg" class="nav__icon" alt="menu icon">
             </a>
 
             <a href="" class="nav__close">
-                <img src="./images/close.svg" class="nav__icon">
+                <img src="./images/close.svg" class="nav__icon" alt="close icon">
             </a>
         </nav>
     </header>
@@ -72,7 +72,7 @@ $_SESSION['usuario'];
                 <?php
                 $peliculasInfo = $videoclubController->listarPeliculasDetalladas();
                 foreach ($peliculasInfo as $pelicula) : ?>
-                    <div class="pelicula">
+                    <div class="pelicula"> 
                         <div class="img-container">
                             <img class="img-peli" src="<?php echo $pelicula['pelicula_cartel']; ?>" alt="Cartel de la película">
                         </div>
@@ -88,7 +88,7 @@ $_SESSION['usuario'];
                                         <strong>Nombre:</strong> <?php echo $actor['actor_nombre']; ?><br>
                                         <strong>Apellidos:</strong> <?php echo $actor['actor_apellidos']; ?><br>
                                         <div class="img-container">
-                                            <img class="img-peli" src="<?php echo $actor['actor_fotografia']; ?>" alt="Foto del actor">
+                                            <img class="img-actor" src="<?php echo $actor['actor_fotografia']; ?>" alt="Foto del actor">
                                         </div>
                                     </li>
                                 <?php endforeach; ?>
@@ -107,6 +107,7 @@ $_SESSION['usuario'];
                 <?php endforeach; ?>
             </div>
         </div>
+        <a href="#mininav" class="link">Volver arriba</a>
     </div>
 </body>
 

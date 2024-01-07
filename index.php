@@ -34,16 +34,17 @@
 
             <!--Tiene que ser un boton que haga referencia al id puesto en el nav-->
             <a href="#mininav" class="nav__hamburguer">
-                <img src="./views/images/menu.svg" class="nav__icon">
+                <img src="./views/images/menu.svg" class="nav__icon" alt="menu icon">
             </a>
 
             <a href="" class="nav__close">
-                <img src="./views/images/close.svg" class="nav__icon">
+                <img src="./views/images/close.svg" class="nav__icon" alt="class icon">
             </a>
         </nav>
     </header>
     <div class="visor visorindex">
     </div>
+    
     
     
 </body>
