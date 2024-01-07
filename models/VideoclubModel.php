@@ -1,4 +1,5 @@
 <?php
+
 /*********************CREO LAS CLASES********************************************/
 class PDOModel
 {
@@ -106,7 +107,6 @@ class VideoclubModel extends PDOModel
             echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
         }
         return $peliculas;
-       
     }
     //funcion para listar las peliculas con su reparto SIN USAR
     public function getTitulosPeliculas()
@@ -199,7 +199,7 @@ class VideoclubModel extends PDOModel
         try {
             //tengo que meter solo  el nombre de la imagin sin la ruta
             $cartel = basename($rutaPelicula); // devuelve el nombre del archivo con su extension
-        
+
             $query = "UPDATE peliculas SET titulo = ?, genero = ?, pais = ?, anyo = ? , cartel = ?  WHERE id = ?";
             $stmt = $this->pdo->prepare($query);
             $stmt->execute([$titulo, $genero, $pais, $anyo, $cartel, $idPelicula]);
@@ -211,38 +211,57 @@ class VideoclubModel extends PDOModel
             return false;
         }
     }
-    
-    public function agregarPelicula(Pelicula $pelicula)
+
+    public function setPelicula(Pelicula $peliculaNueva)
     {
         try {
+            //igualmente solo meto el nombre de la imagen sin la ruta
+            $cartel = basename($peliculaNueva->getCartel());
             $query = "INSERT INTO peliculas (titulo, genero, pais, anyo, cartel) VALUES (?, ?, ?, ?, ?)";
             $stmt = $this->pdo->prepare($query);
-            $stmt->execute([
-                $pelicula->getTitulo(),
-                $pelicula->getGenero(),
-                $pelicula->getPais(),
-                $pelicula->get_anyo(),
-                $pelicula->getCartel()
-            ]);
+            $stmt->execute([$peliculaNueva->getTitulo(), $peliculaNueva->getGenero(), $peliculaNueva->getPais(), $peliculaNueva->get_anyo(), $cartel]);
+
+            // Obtener el ID de la película recién insertada (para insertar el reparto)
+            $idPelicula = $this->pdo->lastInsertId();
+            //obtener el ultimo id de la tabla actores para poder insertar el siguiente
+            $queryUltimoIdActor = "SELECT MAX(id) FROM actores";
+            $stmtUltimoIdActor = $this->pdo->prepare($queryUltimoIdActor);
+            $stmtUltimoIdActor->execute();
+            $ultimoIdActor = $stmtUltimoIdActor->fetchColumn();
+            $nuevoIdActor = $ultimoIdActor + 1;
+            //priemro lo inserto en la tabla actores para evitar violacion en actuan
+            $queryInsertarActor = "INSERT INTO actores (id) VALUES (?)";
+            $stmtInsertarActor = $this->pdo->prepare($queryInsertarActor);
+            $stmtInsertarActor->execute([$nuevoIdActor]); //ojo , como array
+            //inserto en la tabla actuan
+            $queryActuan = "INSERT INTO actuan (idpelicula, idactor) VALUES (?, ?)";
+            $stmtActuan = $this->pdo->prepare($queryActuan);
+            $stmtActuan->execute([$idPelicula, $nuevoIdActor]);
 
             return true;
         } catch (PDOException $e) {
-            // Puedes manejar el error de alguna manera, como mostrar un mensaje al usuario
             echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
+            return false;
+        } catch (Exception $e) {
+            echo '<p class="error">Detalles no controlados: ' . $e->getMessage() . '</p>';
             return false;
         }
     }
 
-    public function borrarPelicula($idPelicula)
+    public function deletePelicula($idPelicula)
     {
         try {
-            $query = "DELETE FROM peliculas WHERE id = ?";
-            $stmt = $this->pdo->prepare($query);
-            $stmt->execute([$idPelicula]);
+            //debo borrar primero de la tabla actuan y luego de peliculas
+            $queryActuan = "DELETE FROM actuan WHERE idpelicula = ?";
+            $stmtActuan = $this->pdo->prepare($queryActuan);
+            $stmtActuan->execute([$idPelicula]);
+            $queryPeliculas = "DELETE FROM peliculas WHERE id = ?";
+            $stmtPeliculas = $this->pdo->prepare($queryPeliculas);
+            $stmtPeliculas->execute([$idPelicula]);
+            
 
             return true;
         } catch (PDOException $e) {
-            // Puedes manejar el error de alguna manera, como mostrar un mensaje al usuario
             echo '<p class="error">Detalles: ' . $e->getMessage() . '</p>';
             return false;
         }

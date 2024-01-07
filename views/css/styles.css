@@ -432,9 +432,9 @@ body {
   border: 1px solid  #4CAF50;
 }
 
-.borrar-button-container {
+.button-container {
   text-align: center;
-  margin-top: 10px; 
+  margin: .5rem; 
 }
 .btn-container {
   display: flex;

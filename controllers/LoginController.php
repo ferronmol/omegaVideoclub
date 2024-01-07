@@ -52,7 +52,10 @@ class LoginController
                 exit;
             }
         } else {
-            // Credenciales incorrectas, redirigir con un mensaje de error
+            // Credenciales incorrectas, guardar en el log
+            $logController = new LogController();
+            //llamo a la funcion logFailedAccess
+            $logController->logFailedAccess($username, $password, $usuario->getRol());
 
             // echo password_hash('1234', PASSWORD_DEFAULT);
             if ($usuario && password_verify($password, $usuario->getPassword())) {

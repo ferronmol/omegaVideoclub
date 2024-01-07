@@ -5,6 +5,12 @@ require '../controllers/LoginController.php';
 $videoclubController = new VideoclubController();
 //recupero los datos del usuario de la sesion que debe se run objeto usuario
 $_SESSION['usuario'];
+if (isset($_GET['exito_borrado']) && $_GET['exito_borrado'] == 1) {
+    $_SESSION['exito_borrado'] = '¡La película se borró éxito!';
+    //lo meto en una variable
+    $exito_borrado = $_SESSION['exito_borrado'];
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +71,19 @@ $_SESSION['usuario'];
             . Estas es tu zona privada.
         </div>
         <div class="panel">
+            <!--muestro mi exito de boorado si existe-->
+            <?php
+                if (isset($exito_borrado)) : ?>
+                    <div class="exito" role="alert">
+                        <?php echo $exito_borrado; ?>
+                    </div>
+                <?php endif; ?>
             <h2 class="title">Listado de Películas</h2>
+            <!------boton para insertar peliculas--------->
+            <div class="button-container">
+                <a href="../controllers/VideoclubController.php?action=crearPelicula" class="link">Insertar Película</a>
+            </div>
+
             <div class="peliculas-container">
                 <?php
                 $peliculasInfo = $videoclubController->listarPeliculasDetalladas();
@@ -94,7 +112,7 @@ $_SESSION['usuario'];
                             <!-- Si es administrador muestro botón de MODIFICAR y BORRAR -->
                             <?php
                             if ($_SESSION['usuario']->getRol() == 1) : ?>
-                                <div class="borrar-button-container">
+                                <div class="button-container">
                                     <a href="../controllers/VideoclubController.php?action=modificarPelicula&idPelicula=<?php echo $pelicula['pelicula_id']; ?>" class="link">Modificar</a>
                                     <a href="../controllers/VideoclubController.php?action=borrarPelicula&idPelicula=<?php echo $pelicula['pelicula_id']; ?>" class="link">Borrar</a>
                                 <?php endif; ?>

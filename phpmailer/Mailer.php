@@ -22,7 +22,7 @@ class Mailer {
             // Configuración del correo electrónico
             $mail->setFrom($formData->email, $formData->name);
             $mail->addAddress($GLOBALS['adminEmail']);  // Coloca la dirección del destinatario aquí
-            $mail->Subject = 'Consulta del Formulario';
+            $mail->Subject = 'Consulta de Asistencia de ' . $formData->name . '';
             $mail->Body = $formData->message;
 
             //$mail->SMTPDebug = 2; // Activa la salida de depuración detallada(si no funciona el envio)

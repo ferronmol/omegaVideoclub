@@ -73,7 +73,7 @@ if (isset($_GET['exito_modificacion']) && $_GET['exito_modificacion'] == 1) {
                                 <!-- Si es administrador muestro botón de MODIFICAR y BORRAR -->
                                 <?php
                                 if ($_SESSION['usuario']->getRol() == 1) : ?>
-                                    <div class="borrar-button-container">
+                                    <div class="button-container">
                                         <a href="../controllers/VideoclubController.php?action=borrarPelicula&idPelicula=<?php echo $pelicula['pelicula_id']; ?>" class="link">Borrar</a>
                                     <?php endif; ?>
                                     </div>

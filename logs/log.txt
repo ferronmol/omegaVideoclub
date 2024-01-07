@@ -60,3 +60,26 @@
         de juan ferron mail proyectosferron@gmail.com, tel 649123705 , en fecha 2024-01-06 y mensaje: ya falta poco poco 
 [2024-01-06] - Usuario: Anónimo - Rol: Anónimo - Acción: Envio de correo 
         de juan ferron mail proyectosferron@gmail.com, tel 649123705 , en fecha 2024-01-06 y mensaje: ya falta poco poco 
+[2024-01-06 18:06:58] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-06 18:07:09] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-06 18:35:36] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-06 18:38:02] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-06 18:38:17] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-06 18:38:24] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-06 19:30:51] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-06 20:10:52] - Usuario: admin - Rol: 1 - Acción: Cierre de sesión
+[2024-01-06 20:11:01] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-06 20:22:44] - Usuario: admin - Rol: 1 - Acción: Cierre de sesión
+[2024-01-06 20:22:55] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-06 20:26:02] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-06 20:26:09] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-07 10:07:53] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-07 10:58:07] - Usuario: admin - Rol: 1 - Acción: Cierre de sesión
+[2024-01-07 10:58:21] - Usuario: juan - Rol: 0 - Acción: Acceso a la zona privada
+[2024-01-07 11:01:38] - Usuario: Anónimo - Rol: Anónimo - Acción: Envio de correo 
+        de pepe mail merycd8@gmail.com, tel 649123705 , en fecha 2024-01-07 y mensaje: esto fucniona? 
+[2024-01-07 11:06:37] - Usuario: juan - Rol: 0 - Acción: Cierre de sesión
+[2024-01-07 11:06:44] - Usuario: admin - Rol: 1 - Acción: Acceso a la zona privada
+[2024-01-07 11:22:22] - Usuario: admin - Rol: 1 - Acción: Cierre de sesión
+[2024-01-07 11:22:31] - Usuario: pepe - Acción: Acceso fallido a la zona privada
+[2024-01-07 11:27:55] - Usuario: lolo - Rol: 0 - Acción: Acceso fallido a la zona privada
