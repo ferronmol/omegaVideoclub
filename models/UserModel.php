@@ -17,13 +17,13 @@ class Usuario
         $this->password = $password;
         $this->rol = $rol;
     }
-  // metodo magico sleep
+    // metodo magico sleep
     public function __sleep()
     {
         return array('username', 'password', 'rol');
     }
 
-   
+
 
     // Método para obtener el nombre del usuario
     public function getUsername()
@@ -63,39 +63,39 @@ class UserModel
 
     // Método para insertar un usuario en la base de datos
     public function insertarUsuario($username, $password, $rol)
-{
-    try {
-        // Validar longitud mínima del password
-        if (strlen($password) < 4) {
-            throw new Exception("Error: La longitud mínima del password es 4 caracteres.");
-        }
-
-        // Encriptación de la contraseña
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
-        $sql = "INSERT INTO usuarios (username, password, rol) VALUES (?, ?, ?)";
-        $stmt = $this->db->getPDO()->prepare($sql);
-        $result = $stmt->execute([$username, $passwordHash, $rol]);
-
-        if ($result) {
-            return true;
-        } else {
-            // Verificar si ocurrió una violación de la clave única (username)
-            $errorCode = $stmt->errorCode();
-            if ($errorCode === '23000' || strpos($stmt->errorInfo()[2], 'Duplicate entry') !== false) {
-                // Código de error 23000 indica violación de clave única
-                throw new Exception("Error: El nombre de usuario '$username' ya está en uso.");
-            } else {
-                // Otro tipo de error
-                throw new Exception("Error al ejecutar la consulta: " . implode(", ", $stmt->errorInfo()));
+    {
+        try {
+            // Validar longitud mínima del password
+            if (strlen($password) < 4) {
+                throw new Exception("Error: La longitud mínima del password es 4 caracteres.");
             }
+
+            // Encriptación de la contraseña
+            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO usuarios (username, password, rol) VALUES (?, ?, ?)";
+            $stmt = $this->db->getPDO()->prepare($sql);
+            $result = $stmt->execute([$username, $passwordHash, $rol]);
+
+            if ($result) {
+                return true;
+            } else {
+                // Verificar si ocurrió una violación de la clave única (username)
+                $errorCode = $stmt->errorCode();
+                if ($errorCode === '23000' || strpos($stmt->errorInfo()[2], 'Duplicate entry') !== false) {
+                    // Código de error 23000 indica violación de clave única
+                    throw new Exception("Error: El nombre de usuario '$username' ya está en uso.");
+                } else {
+                    // Otro tipo de error
+                    throw new Exception("Error al ejecutar la consulta: " . implode(", ", $stmt->errorInfo()));
+                }
+            }
+        } catch (Exception $ex) {
+            // Redirigir a la página de registro con un mensaje de error
+            header('Location: ../views/register.php?error=' . urlencode($ex->getMessage()));
+            exit();
         }
-    } catch (Exception $ex) {
-        // Redirigir a la página de registro con un mensaje de error
-        header('Location: ../views/register.php?error=' . urlencode($ex->getMessage()));
-        exit();
     }
-}
 
 
     // Método para verificar si un usuario ya existe
@@ -147,7 +147,7 @@ class UserModel
         }
     }
     // Método para obtener un objeto usuario por su nombre de usuario
-    
+
     public function getUsuario($username)
     {
         try {
@@ -155,14 +155,14 @@ class UserModel
             $stmt = $this->db->getPDO()->prepare($sql);
             $stmt->execute([$username]);
 
-           $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-           if ($result) {
-            //devueve un objeto usuario
-               return new Usuario($result['username'], $result['password'], $result['rol']);
-           } else {
-               return new Usuario($username, '', 0);
-           }
+            if ($result) {
+                //devueve un objeto usuario
+                return new Usuario($result['username'], $result['password'], $result['rol']);
+            } else {
+                return new Usuario($username, '', 0);
+            }
         } catch (Exception $ex) {
             echo '<p class="error">Detalles: ' . $ex->getMessage() . '</p>';
             return new Usuario($username, '', 0);
@@ -171,7 +171,7 @@ class UserModel
 
 
 
-  
+
     // Método para verificar las credenciales del usuario
     public function verificarCredenciales($username, $password)
     {
@@ -193,6 +193,4 @@ class UserModel
             return false;
         }
     }
-    
 }
-

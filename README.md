@@ -4,6 +4,9 @@
 
 Esta aplicación web utiliza programación orientada a objetos (POO) y sigue el patrón de diseño Modelo-Vista-Controlador (MVC) para proporcionar funcionalidades a administradores y usuarios. Incluye características de gestión de películas, actores, y usuarios, así como hace uso de sesiones y cookies para una mejor experiencia y seguridad.
 
+![FotoAplicación](./views/images/Captura.PNG)
+
+
 ## Funcionalidades
 
 ### Administradores

@@ -1,7 +1,7 @@
 <?php
 
 /*********************CREO LAS CLASES********************************************/
-class PDOModel
+class PDOModel  //CLASE PADRE PARA CONECTAR CON LA BASE DE DATOS
 {
     private $bd;
     protected $pdo;
@@ -90,7 +90,7 @@ class Actor
     }
 }
 
-class VideoclubModel extends PDOModel
+class VideoclubModel extends PDOModel //clase hija para realizar las consultas
 {
     //funcion para listar las peliculas SIN USAR
     public function getPeliculas()
